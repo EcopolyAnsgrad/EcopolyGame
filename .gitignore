@@ -22,6 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-#printabble pdf files - to be hosted separately
-.src/assets/printables/**/*.pdf
