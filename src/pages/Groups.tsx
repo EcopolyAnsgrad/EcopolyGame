@@ -46,9 +46,22 @@ function Groups() {
         );
     };
 
+    const confirmGroupNames = () => {
+        setGroups(groups =>
+            groups.map(group => ({
+                ...group,
+                nameReadOnly: group.name.trim() !== ""
+            }))
+        );
+    };
+
   return (
     <div className="mainPage">
         <h1>Group selection</h1>
+        <button onClick={confirmGroupNames}>
+            Confirm Group Names
+        </button>
+        
         <div className="groups-Grid">
             {groups.map(group => (
                 <GroupCard

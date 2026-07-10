@@ -12,7 +12,7 @@ type GroupCardProps = {
     groups: Group[];
     onNameChange: (id: number, name: string) => void;
     onColorChange: (id: number, color: string) => void;
-    nameSelected: (id: number, nameReadOnly: boolean) => void;
+    nameSelected: (id: number) => void;
 };
 
 function GroupCard({group, groups, onNameChange, onColorChange, nameSelected}: GroupCardProps) {
@@ -32,17 +32,10 @@ function GroupCard({group, groups, onNameChange, onColorChange, nameSelected}: G
                     readOnly={group.nameReadOnly}
                     onChange={(e) => onNameChange(group.id, e.target.value)}
                     placeholder="Enter group name"
-                    onBlur={() => {
-                        if (group.name.trim() !== "") {
-                            nameSelected(group.id, true);
-                        }
-                    }}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter" && group.name.trim() !== "") {
-                            nameSelected(group.id, true);
-                        }
-                    }}
-                />
+                    className={group.nameReadOnly ? "locked-input" : ""}
+                    style={{
+                        backgroundColor: group.nameReadOnly ? group.color : "white",
+                    }}/>
             </label>
 
             <div className="color-picker">

@@ -10,3 +10,9 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
 }
+
+.locked-input {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
