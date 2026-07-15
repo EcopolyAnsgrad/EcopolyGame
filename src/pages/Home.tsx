@@ -5,6 +5,7 @@ import HomeBlueButton from "../components/HomeBlueButton";
 import FooterLogo from "../components/FooterLogo";
 import polishPDF from "../assets/printables/Polish printable game.pdf";
 import germanPDF from "../assets/printables/German printable game.pdf";
+import * as logos from "../images/logos";
 
 
 function Home() {
@@ -43,12 +44,13 @@ function Home() {
             </div>
 
             <footer className = "footer">
-                <FooterLogo logoSrc="/path/to/erasmus-logo.png" altText="ERASMUS Logo" />
-                <FooterLogo logoSrc="/path/to/ecopoly-logo.png" altText="ECOPOLY Logo" />
+                <FooterLogo logoSrc={logos.horizontal} altText="Cofunded by the European Union" />
+                <FooterLogo logoSrc={logos.ansgard} altText="ECOPOLY Logo" />
+                <FooterLogo logoSrc={logos.erasmus} altText="Erasmus Logo" />
                 <div className = "footerRight"> 
-                    <FooterLogo logoSrc="/path/to/school1-logo.png" altText="School 1 Logo" />
-                    <FooterLogo logoSrc="/path/to/school2-logo.png" altText="School 2 Logo" />
-                    <FooterLogo logoSrc="/path/to/school3-logo.png" altText="School 3 Logo" />
+                    <FooterLogo logoSrc={logos.tiraqueau} altText="Tiraqueau Logo" />
+                    <FooterLogo logoSrc={logos.krotoszyn} altText="Krotoszyn Logo" />
+                    <FooterLogo logoSrc={logos.gat} altText="GAT Logo" />
                 </div>
             </footer>
         </div>

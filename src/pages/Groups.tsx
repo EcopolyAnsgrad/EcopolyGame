@@ -76,7 +76,7 @@ function Groups() {
         </div>
 
         <div className="progress-view">
-            
+
         </div>
     </div>
 

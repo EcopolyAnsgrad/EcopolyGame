@@ -3,6 +3,7 @@
 
     display: flex;
     flex-direction: column;
+    background-color: #BDD7EE;
 }
 
 .topContent {  
@@ -71,17 +72,36 @@
     transition: 0.2s;
 }
 
-.footer{  
+.footer {
     height: 120px;
+    flex-shrink: 0;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
-.footerItem{}
+.footerItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.footerItem img {
+    height: 80px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
 
 .footerRight {
     display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .back-button {
