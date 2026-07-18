@@ -87,7 +87,9 @@ function Groups() {
                     <a href={rules} target="_blank" rel="noopener noreferrer">
                         <BlueButton title="Rules (for teachers)" className="blue-button" />
                     </a>
-                    <BlueButton title="Play Ecopoly" className="blue-button" />
+                    <Link to="/islands" className="blue-button">
+                        <BlueButton title="Play Ecopoly" className="blue-button" />
+                    </Link>
                     <Glass history={history} />
         </div>
 

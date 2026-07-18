@@ -1,22 +1,25 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 
-import About from './pages/About.tsx'
-import Islands from './pages/Islands.tsx'
-import Home from './pages/Home.tsx'
-import Authors from './pages/Authors.tsx'
-import French from './pages/French.tsx'
-import Groups from './pages/Groups.tsx'
+import * as Pages from './pages'
+import * as islands from './pages/singleIsland'
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/islands" element={<Islands />} />
-      <Route path="/authors" element={<Authors />} />
-      <Route path="/french" element={<French />} />
-      <Route path="/groups" element={<Groups />} />
+      <Route path="/" element={<Pages.Home />} />
+      <Route path="/about" element={<Pages.About />} />
+      <Route path="/islands" element={<Pages.Islands />} />
+      <Route path="/authors" element={<Pages.Authors />} />
+      <Route path="/french" element={<Pages.French />} />
+      <Route path="/groups" element={<Pages.Groups />} />
+      <Route path="/agriculture" element={<islands.Agriculture />} />
+      <Route path="/climate" element={<islands.Climate />} />
+      <Route path="/everyday" element={<islands.Everyday />} />
+      <Route path="/jobs" element={<islands.Jobs />} />
+      <Route path="/nature" element={<islands.Nature />} />
+      <Route path="/recycling" element={<islands.Recycling />} />
+      <Route path="/resources" element={<islands.Resources />} />
     </Routes>
     );
 }

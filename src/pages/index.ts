@@ -1,0 +1,6 @@
+export { default as About } from './About'
+export { default as Islands } from './Islands'
+export { default as Home } from './Home'
+export { default as Authors } from './Authors'
+export { default as French } from './French'
+export { default as Groups } from './Groups'

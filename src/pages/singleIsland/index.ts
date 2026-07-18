@@ -1,0 +1,7 @@
+export { default as Agriculture } from './Agriculture'
+export { default as Climate } from './Climate'
+export { default as Everyday } from './Everyday'
+export { default as Jobs } from './Jobs'
+export { default as Nature } from './Nature'
+export { default as Recycling } from './Recycling'
+export { default as Resources } from './Resources'
