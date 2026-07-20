@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
 import "./Home.css";
-import HomeBlueButton from "../components/HomeBlueButton";
-import FooterLogo from "../components/FooterLogo";
+import HomeBlueButton from "../shared/components/HomeBlueButton";
+import FooterLogo from "../shared/components/FooterLogo";
 import polishPDF from "../assets/printables/Polish printable game.pdf";
 import germanPDF from "../assets/printables/German printable game.pdf";
 import * as logos from "../images/logos";

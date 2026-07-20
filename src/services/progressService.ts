@@ -1,4 +1,4 @@
-import type { TaskCompletion } from "../components/ProgressGlass/types.tsx";
+import type { TaskCompletion } from "../shared/components/ProgressGlass/types.tsx";
 
 
 export async function getProgressHistory()

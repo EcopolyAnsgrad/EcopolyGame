@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "./Home.css";
 import { useState } from "react";
-import GroupCard from "../components/GroupCard.tsx";
+import GroupCard from "../shared/components/GroupCard.tsx";
 import { COLORS } from "../constants/colors.ts";
 import "./Groups.css";
-import FooterLogo from "../components/FooterLogo";
+import FooterLogo from "../shared/components/FooterLogo.tsx";
 import * as logos from "../images/logos";
-import BlueButton from '../components/BlueButton.tsx';
+import BlueButton from '../shared/components/BlueButton.tsx';
 import rules from "../assets/printables/rules for the ecopoly-game.pdf"
-import Glass from "../components/ProgressGlass/Glass.tsx";
+import Glass from "../shared/components/ProgressGlass/Glass.tsx";
 import {useProgressHistory} from "../hooks/useProgressHistory";
 
 function Groups() {

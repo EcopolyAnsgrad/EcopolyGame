@@ -1,5 +1,5 @@
 import {useEffect,useState} from "react";
-import type {TaskCompletion} from "../components/ProgressGlass/types";
+import type {TaskCompletion} from "../shared/components/ProgressGlass/types";
 import {getProgressHistory} from "../services/progressService";
 
 
