@@ -1,5 +1,7 @@
+import type { Group } from "./Group";
+
 export type TaskAssignment = {
     taskId: number;
-    assignedGroupId?: number;
+    assignedGroup?: Group;
     completed: boolean;
 };
