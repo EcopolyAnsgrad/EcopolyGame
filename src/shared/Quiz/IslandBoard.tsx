@@ -23,8 +23,8 @@ function IslandBoard({tasks, groups,}: IslandBoardProps) {
     function assignRandomGroup(taskId:number){
         const usedGroups =
             assignments
-                .filter(a => a.assignedGroup)
-                .map(a => a.assignedGroup!.id);
+                .filter(a => a.assignedGroupID)
+                .map(a => a.assignedGroupID!);
 
         const available =
             groups.filter(
@@ -46,12 +46,26 @@ function IslandBoard({tasks, groups,}: IslandBoardProps) {
                 a.taskId===taskId
                     ? {
                         ...a,
-                        assignedGroup: random
+                        assignedGroupID: random.id
                     }
                     : a
             )
         );
     }
+
+        function updateCompleted(taskId: number, completed: boolean) {
+            setAssignments(current =>
+                current.map(assignment =>
+                    assignment.taskId === taskId
+                        ? {
+                            ...assignment,
+                            completed,
+                        }
+                        : assignment
+                )
+            );
+        }
+
 
     return(
         <div className="task-grid">
@@ -63,40 +77,24 @@ function IslandBoard({tasks, groups,}: IslandBoardProps) {
                     a=>a.taskId===task.id
                 )!;
 
+                const assignedGroup =
+                    groups.find(
+                        g => g.id === assignment.assignedGroupID
+                    );
+
             return (
 
                 <TaskCard
-
                     key={task.id}
-
                     task={task}
-
-                    assignedGroup={assignment.assignedGroup}
-
-                    completed={assignment.completed}
-
+                    assignedGroup={assignedGroup}
+                    completed={assignment?.completed ?? false}
                     onAssign={()=>
                         assignRandomGroup(task.id)
                     }
-
-                    onCompletedChange={(completed)=>{
-
-                        setAssignments(old=>
-                            old.map(a=>
-
-                                a.taskId===task.id
-                                ?
-                                {
-                                    ...a,
-                                    completed
-                                }
-                                :
-                                a
-
-                            )
-                        );
-
-                    }}
+                        onCompletedChange={(completed) => {
+                            updateCompleted(task.id, completed);
+                        }}
 
                 />
 

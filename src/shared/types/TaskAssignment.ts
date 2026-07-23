@@ -2,6 +2,6 @@ import type { Group } from "./Group";
 
 export type TaskAssignment = {
     taskId: number;
-    assignedGroup?: Group;
+    assignedGroupID?: number;
     completed: boolean;
 };
