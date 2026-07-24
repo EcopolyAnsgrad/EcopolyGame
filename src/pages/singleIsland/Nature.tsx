@@ -1,13 +1,24 @@
 import { nature as islandNature } from "../../images/islands";
+import { natureTasks } from "../../data/natureTasks";
+import IslandBoard from "../../shared/Quiz/IslandBoard";
 
 export default function Nature() {
-  return (
-    <div style={{ position: "relative", minHeight: "100vh", width: "100%" }}>
-      <img
-        src={islandNature}
-        alt="Nature island"
-        style={{ position: "absolute", top: 0, left: 0, maxWidth: "100%", height: "auto" }}
-      />
-    </div>
-  );
+    return (
+
+        <div className="island-page">
+
+            <img
+                src={islandNature}
+                className="island-image"
+                alt="Nature"
+            />
+
+            <IslandBoard
+                tasks={natureTasks}            
+            />
+
+        </div>
+
+    );
+
 }

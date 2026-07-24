@@ -1,0 +1,21 @@
+.task-card.hidden{
+
+    background:black;
+    color:white;
+
+    cursor:pointer;
+
+    min-height:220px;
+
+    font-size:48px;
+
+}
+
+.task-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+
+    width:900px;
+    margin:auto;
+}

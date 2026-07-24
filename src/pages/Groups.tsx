@@ -1,9 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import "./Home.css";
 import { useState } from "react";
 import GroupCard from "../shared/Quiz/GroupCard.tsx";
-import { COLORS } from "../constants/colors.ts";
 import "./Groups.css";
 import FooterLogo from "../shared/UI/FooterLogo.tsx";
 import * as logos from "../images/logos";
@@ -11,18 +9,20 @@ import BlueButton from '../shared/UI/BlueButton.tsx';
 import rules from "../assets/printables/rules for the ecopoly-game.pdf"
 import Glass from "../shared/components/ProgressGlass/Glass.tsx";
 import {useProgressHistory} from "../hooks/useProgressHistory";
+import { useGame } from '../game/context/GameContext.tsx';
 
 function Groups() {
+    const [lockedGroups, setLockedGroups] = useState<number[]>([]);
     const { history } = useProgressHistory();
 
-    const [groups, setGroups]=useState(
+    const {groups, setGroups}=useGame();/*(
         COLORS.slice(0, 6).map((color, index) => ({
             id: index + 1,
             name: "",
             color,
             nameReadOnly: false,
         }))
-    );
+    );*/
 
     const handleNameLock=(id: number) => {
         setGroups(groups =>
@@ -54,14 +54,13 @@ function Groups() {
         );
     };
 
-    const confirmGroupNames=() => {
-        setGroups(groups =>
-            groups.map(group => ({
-                ...group,
-                nameReadOnly: group.name.trim() !== ""
-            }))
-        );
-    };
+const confirmGroupNames=()=>{
+    setLockedGroups(
+        groups
+            .filter(group => group.name.trim() !== "")
+            .map(group => group.id)
+    );
+};
 
   return (
     <div className="mainPage">
@@ -77,9 +76,8 @@ function Groups() {
                     group={group}
                     groups={groups}
                     onNameChange={handleNameChange}
-                    onColorChange={handleColorChange}
-                    nameSelected={handleNameLock}
-                />
+                    onColorChange={handleColorChange} 
+                    />
             ))}
         </div>
 

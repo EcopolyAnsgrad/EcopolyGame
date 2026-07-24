@@ -3,16 +3,19 @@ import type { TaskAssignment } from "../types/TaskAssignment";
 import { useState } from "react";
 import type { Group } from "../types/Group";
 import TaskCard from "./TaskCard";
+import "./tasks.css"
+import { useGame } from "../../game/context/GameContext";
 
 
 
 
 type IslandBoardProps = {
     tasks: TaskDefinition[];
-    groups: Group[];
 };
 
-function IslandBoard({tasks, groups,}: IslandBoardProps) {
+function IslandBoard({tasks,}: IslandBoardProps) {
+    const { groups } = useGame();
+
     const [assignments, setAssignments] = useState<TaskAssignment[]>(
         tasks.map(task => ({
             taskId: task.id,

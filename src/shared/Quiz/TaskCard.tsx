@@ -1,4 +1,5 @@
 import type { Group } from "../types/Group";
+import "./tasks.css"
 
 import type { TaskDefinition } from "../types/TaskDefinition";
 type TaskCardProps = {

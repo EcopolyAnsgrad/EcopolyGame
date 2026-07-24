@@ -1,13 +1,24 @@
 import { jobs as islandJobs } from "../../images/islands";
+import { jobsTasks } from "../../data/jobsTasks";
+import IslandBoard from "../../shared/Quiz/IslandBoard";
 
 export default function Jobs() {
-  return (
-    <div style={{ position: "relative", minHeight: "100vh", width: "100%" }}>
-      <img
-        src={islandJobs}
-        alt="Jobs island"
-        style={{ position: "absolute", top: 0, left: 0, maxWidth: "100%", height: "auto" }}
-      />
-    </div>
-  );
+    return (
+
+        <div className="island-page">
+
+            <img
+                src={islandJobs}
+                className="island-image"
+                alt="Jobs"
+            />
+
+            <IslandBoard
+                tasks={jobsTasks}            
+            />
+
+        </div>
+
+    );
+
 }

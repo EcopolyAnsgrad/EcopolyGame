@@ -1,21 +1,17 @@
+import { useState } from "react";
 import { COLORS } from "../../constants/colors";
+import type { Group } from "../types/Group"
 
-type Group = {
-    id: number;
-    name: string;
-    color: string;
-    nameReadOnly: boolean;
-};
+type GroupCardProps={
+    group:Group;
+    groups:Group[];
+    
+    onNameChange:(id:number,name:string)=>void;
+    onColorChange:(id:number,color:string)=>void;
+}
 
-type GroupCardProps = {
-    group: Group;
-    groups: Group[];
-    onNameChange: (id: number, name: string) => void;
-    onColorChange: (id: number, color: string) => void;
-    nameSelected: (id: number) => void;
-};
-
-function GroupCard({group, groups, onNameChange, onColorChange, nameSelected}: GroupCardProps) {
+function GroupCard({group, groups, onNameChange, onColorChange, }: GroupCardProps) {
+        const [lockedGroups, setLockedGroups] = useState<number[]>([]);
     const usedColors = groups
         .filter(g => g.id !== group.id)
         .map(g => g.color);
@@ -29,12 +25,12 @@ function GroupCard({group, groups, onNameChange, onColorChange, nameSelected}: G
                 <input
                     type="text"
                     value={group.name}
-                    readOnly={group.nameReadOnly}
+                    readOnly={lockedGroups.includes(group.id)}
                     onChange={(e) => onNameChange(group.id, e.target.value)}
                     placeholder="Enter group name"
-                    className={group.nameReadOnly ? "locked-input" : ""}
+                    className={lockedGroups.includes(group.id) ? "locked-input" : ""}
                     style={{
-                        backgroundColor: group.nameReadOnly ? group.color : "white",
+                        backgroundColor: lockedGroups.includes(group.id)? group.color : "white",
                     }}/>
             </label>
 

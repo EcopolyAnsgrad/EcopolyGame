@@ -1,13 +1,24 @@
 import { resources as islandResources } from "../../images/islands";
+import { resourcesTasks } from "../../data/resourcesTasks";
+import IslandBoard from "../../shared/Quiz/IslandBoard";
 
 export default function Resources() {
-  return (
-    <div style={{ position: "relative", minHeight: "100vh", width: "100%" }}>
-      <img
-        src={islandResources}
-        alt="Resources island"
-        style={{ position: "absolute", top: 0, left: 0, maxWidth: "100%", height: "auto" }}
-      />
-    </div>
-  );
+    return (
+
+        <div className="island-page">
+
+            <img
+                src={islandResources}
+                className="island-image"
+                alt="Resources"
+            />
+
+            <IslandBoard
+                tasks={resourcesTasks}            
+            />
+
+        </div>
+
+    );
+
 }
