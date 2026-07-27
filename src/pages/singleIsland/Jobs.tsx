@@ -15,6 +15,7 @@ export default function Jobs() {
 
             <IslandBoard
                 tasks={jobsTasks}            
+                islandId="jobs"
             />
 
         </div>

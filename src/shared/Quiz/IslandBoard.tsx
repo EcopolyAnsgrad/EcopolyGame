@@ -1,27 +1,23 @@
 import type {TaskDefinition} from "../types/TaskDefinition"
-import type { TaskAssignment } from "../types/TaskAssignment";
-import { useState } from "react";
-import type { Group } from "../types/Group";
 import TaskCard from "./TaskCard";
 import "./tasks.css"
 import { useGame } from "../../game/context/GameContext";
 
-
-
-
 type IslandBoardProps = {
+    islandId: string;
     tasks: TaskDefinition[];
 };
 
-function IslandBoard({tasks,}: IslandBoardProps) {
-    const { groups } = useGame();
+function IslandBoard({islandId, tasks,}: IslandBoardProps) {
+    const {
+        groups,
+        getAssignments,
+        assignTask,
+        completeTask,
+    } = useGame();
 
-    const [assignments, setAssignments] = useState<TaskAssignment[]>(
-        tasks.map(task => ({
-            taskId: task.id,
-            completed: false,
-        }))
-    );
+    const assignments =
+        getAssignments(islandId);
 
     function assignRandomGroup(taskId:number){
         const usedGroups =
@@ -44,28 +40,18 @@ function IslandBoard({tasks,}: IslandBoardProps) {
                 )
             ];
 
-        setAssignments(old =>
-            old.map(a =>
-                a.taskId===taskId
-                    ? {
-                        ...a,
-                        assignedGroupID: random.id
-                    }
-                    : a
-            )
+        assignTask(
+            islandId,
+            taskId,
+            random.id
         );
     }
 
         function updateCompleted(taskId: number, completed: boolean) {
-            setAssignments(current =>
-                current.map(assignment =>
-                    assignment.taskId === taskId
-                        ? {
-                            ...assignment,
-                            completed,
-                        }
-                        : assignment
-                )
+            completeTask(
+                islandId,
+                taskId,
+                completed
             );
         }
 

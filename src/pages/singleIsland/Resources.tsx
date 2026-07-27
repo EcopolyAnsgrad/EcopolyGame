@@ -14,7 +14,8 @@ export default function Resources() {
             />
 
             <IslandBoard
-                tasks={resourcesTasks}            
+                tasks={resourcesTasks}           
+                islandId="resources" 
             />
 
         </div>

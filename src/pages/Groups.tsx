@@ -15,44 +15,33 @@ function Groups() {
     const [lockedGroups, setLockedGroups] = useState<number[]>([]);
     const { history } = useProgressHistory();
 
-    const {groups, setGroups}=useGame();/*(
-        COLORS.slice(0, 6).map((color, index) => ({
-            id: index + 1,
-            name: "",
+    const { groups, updateGroup } = useGame();
+
+    function handleNameChange(id: number, name: string) {
+
+        const group = groups.find(g => g.id === id);
+
+        if (!group) return;
+
+        updateGroup({
+            ...group,
+            name,
+        });
+
+    }
+    
+    function handleColorChange(id: number, color: string) {
+
+        const group =
+            groups.find(g => g.id === id);
+
+        if (!group) return;
+
+        updateGroup({
+            ...group,
             color,
-            nameReadOnly: false,
-        }))
-    );*/
-
-    const handleNameLock=(id: number) => {
-        setGroups(groups =>
-            groups.map(group =>
-                group.id === id
-                    ? { ...group, nameReadOnly: true }
-                    : group
-            )
-        );
-    };
-
-    const handleNameChange=(id: number, name: string) => {
-        setGroups(groups =>
-            groups.map(group =>
-                group.id === id
-                    ? { ...group, name }
-                    : group
-            )
-        );
-    };
-
-    const handleColorChange=(id: number, color: string) => {
-        setGroups(groups =>
-            groups.map(group =>
-                group.id === id
-                    ? { ...group, color }
-                    : group
-            )
-        );
-    };
+        });
+    }
 
 const confirmGroupNames=()=>{
     setLockedGroups(

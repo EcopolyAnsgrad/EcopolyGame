@@ -14,7 +14,8 @@ export default function Recycling() {
             />
 
             <IslandBoard
-                tasks={recyclingTasks}            
+                tasks={recyclingTasks}    
+                islandId="reycling"        
             />
 
         </div>

@@ -15,6 +15,7 @@ export default function Nature() {
 
             <IslandBoard
                 tasks={natureTasks}            
+                islandId="nature"
             />
 
         </div>

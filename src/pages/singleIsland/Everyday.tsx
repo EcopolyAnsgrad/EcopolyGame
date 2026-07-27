@@ -14,7 +14,8 @@ export default function Everyday() {
             />
 
             <IslandBoard
-                tasks={everydayTasks}            
+                tasks={everydayTasks}          
+                islandId="everyday"  
             />
 
         </div>

@@ -14,7 +14,8 @@ export default function Climate() {
             />
 
             <IslandBoard
-                tasks={climateTasks}            
+                tasks={climateTasks}         
+                islandId="climate"   
             />
 
         </div>

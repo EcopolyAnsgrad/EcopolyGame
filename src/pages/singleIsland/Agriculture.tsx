@@ -14,7 +14,7 @@ export default function Agriculture() {
             />
 
             <IslandBoard
-                tasks={agricultureTasks}            
+                tasks={agricultureTasks} islandId="agriculture"            
             />
 
         </div>
