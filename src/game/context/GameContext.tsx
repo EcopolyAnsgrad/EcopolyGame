@@ -33,8 +33,16 @@ const GameContext =
     createContext<GameContextType | null>(null);
 
 function createInitialGame(): GameState {
+    const now = new Date().toISOString();
+
     return {
-        gameId: crypto.randomUUID(),
+        ID: crypto.randomUUID(),
+
+        createdAt: now,
+        updatedAt: now,
+        version: 1,
+
+        teacherName: "",
 
         groups: COLORS.slice(0, 6).map(
             (color, index) => ({
@@ -63,6 +71,8 @@ export function GameProvider({
 
         setGame(current => ({
             ...current,
+            
+            updatedAt: new Date().toISOString(),
 
             groups:
                 current.groups.map(g =>
@@ -108,6 +118,9 @@ export function GameProvider({
 
             return {
                 ...current,
+
+                updatedAt: new Date().toISOString(),
+
                 assignments: {
                     ...current.assignments,
                     [islandId]:
@@ -138,6 +151,8 @@ export function GameProvider({
 
             return {
                 ...current,
+
+                updatedAt: new Date().toISOString(),
 
                 assignments: {
                     ...current.assignments,

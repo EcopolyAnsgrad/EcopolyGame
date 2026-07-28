@@ -68,7 +68,7 @@ function IslandBoard({islandId, tasks,}: IslandBoardProps) {
 
                 const assignedGroup =
                     groups.find(
-                        g => g.id === assignment.assignedGroupID
+                        g => g.id === assignment?.assignedGroupID
                     );
 
             return (

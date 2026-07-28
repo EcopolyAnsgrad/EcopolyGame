@@ -15,7 +15,7 @@ function TaskCard({task, assignedGroup, completed, onAssign, onCompletedChange,}
     if (!assignedGroup) {
         return (
             <div
-                className="task-card hidden"
+                className="task-card"
                 onClick={onAssign}
             />
         );
