@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { COLORS } from "../../constants/colors";
-import type { Group } from "../types/Group"
+import type { Group } from "../../game/types/Group"
 
 type GroupCardProps={
     group:Group;

@@ -1,18 +1,14 @@
-import type { Group } from "../../shared/types/Group";
-import type { TaskAssignment } from "../../shared/types/TaskAssignment";
+import type { Group } from "./Group";
+import type { TaskAssignment } from "./TaskAssignment";
 
 export type GameState = {
-    ID: string;
+    ID:string;
+    accountId:string;
 
-    teacherName?: string;
-    schoolName?: string;
-
-    createdAt: string;
-    updatedAt: string;
-
-    groups: Group[];
-
+    createdAt:string;
+    updatedAt:string;
     version: number;
 
-    assignments: Record<string, TaskAssignment[]>;
+    groups: Group[];
+    assignments:Record<string, TaskAssignment[]>;
 }

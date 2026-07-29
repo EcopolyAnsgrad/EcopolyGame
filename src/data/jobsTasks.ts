@@ -1,4 +1,4 @@
-import type { TaskDefinition } from "../shared/types/TaskDefinition";
+import type { TaskDefinition } from "../game/types/TaskDefinition";
 
 export const jobsTasks: TaskDefinition[] = [{
         id: 1,

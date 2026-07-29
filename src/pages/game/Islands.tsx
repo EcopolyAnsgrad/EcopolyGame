@@ -1,8 +1,8 @@
-import * as islands from "../images/islands";
+import * as islands from "../../images/islands";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./islands.css";
-import { ISLANDS_NAVIGATION } from "../constants/islandNavigator";
+import { ISLANDS_NAVIGATION } from "../../constants/islandNavigator";
 
 function Islands() {
   return (

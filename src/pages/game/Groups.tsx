@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import "./Home.css";
 import { useState } from "react";
-import GroupCard from "../shared/Quiz/GroupCard.tsx";
+import GroupCard from "../../shared/Quiz/GroupCard.tsx";
 import "./Groups.css";
-import FooterLogo from "../shared/UI/FooterLogo.tsx";
-import * as logos from "../images/logos";
-import BlueButton from '../shared/UI/BlueButton.tsx';
+import FooterLogo from "../../shared/UI/FooterLogo.tsx";
+import * as logos from "../../images/logos/index.ts";
+import BlueButton from '../../shared/UI/BlueButton.tsx';
 import rules from "../assets/printables/rules for the ecopoly-game.pdf"
-import Glass from "../shared/components/ProgressGlass/Glass.tsx";
-import {useProgressHistory} from "../hooks/useProgressHistory";
-import { useGame } from '../game/context/GameContext.tsx';
+import Glass from "../../shared/components/ProgressGlass/Glass.tsx";
+import {useProgressHistory} from "../../hooks/useProgressHistory.ts";
+import { useGame } from '../../game/context/GameContext.tsx';
 
 function Groups() {
     const [lockedGroups, setLockedGroups] = useState<number[]>([]);

@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import type { GameState } from "../types/GameState";
-import type { Group } from "../../shared/types/Group";
-import type { TaskAssignment } from "../../shared/types/TaskAssignment";
+import type { Group } from "../types/Group";
+import type { TaskAssignment } from "../types/TaskAssignment";
 import { COLORS } from "../../constants/colors";
 
 type GameContextType = {
@@ -37,12 +37,11 @@ function createInitialGame(): GameState {
 
     return {
         ID: crypto.randomUUID(),
+        accountId: "",
 
         createdAt: now,
         updatedAt: now,
         version: 1,
-
-        teacherName: "",
 
         groups: COLORS.slice(0, 6).map(
             (color, index) => ({

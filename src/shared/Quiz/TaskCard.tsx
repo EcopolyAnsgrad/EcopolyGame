@@ -1,7 +1,7 @@
-import type { Group } from "../types/Group";
+import type { Group } from "../../game/types/Group";
 import "./tasks.css"
 
-import type { TaskDefinition } from "../types/TaskDefinition";
+import type { TaskDefinition } from "../../game/types/TaskDefinition";
 type TaskCardProps = {
     task: TaskDefinition;
     assignedGroup?: Group;
