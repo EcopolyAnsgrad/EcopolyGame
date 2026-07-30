@@ -1,8 +1,9 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import type { GameState } from "../types/GameState";
 import type { Group } from "../types/Group";
 import type { TaskAssignment } from "../types/TaskAssignment";
 import { COLORS } from "../../constants/colors";
+import {createGame} from "../CreateGame";
 
 type GameContextType = {
     game: GameState;
@@ -26,45 +27,37 @@ type GameContextType = {
     getAssignments: (
         islandId: string
     ) => TaskAssignment[];
+
+    saveGame: () => Promise<void>;
+
+    loadGame: (game: GameState) => void;
 };
 
+const GameContext = createContext<GameContextType | null>(null);
+    
+export function GameProvider({children,}: {children: React.ReactNode;}) {
+    async function saveGame(): Promise<void> {
+        // Later:
+        // await gameService.saveGame(game);
 
-const GameContext =
-    createContext<GameContextType | null>(null);
+        console.log("Saving game...");
+    }
 
-function createInitialGame(): GameState {
-    const now = new Date().toISOString();
+    function loadGame(game: GameState): void {
 
-    return {
-        ID: crypto.randomUUID(),
-        accountId: "",
+        setGame(game);
+    }
 
-        createdAt: now,
-        updatedAt: now,
-        version: 1,
-
-        groups: COLORS.slice(0, 6).map(
-            (color, index) => ({
-                id: index + 1,
-                name: "",
-                color,
-            })
-        ),
-
-        assignments: {},
-    };
-}
-
-export function GameProvider({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
-
-    const [game, setGame] =
-        useState<GameState>(
-            createInitialGame()
+    const [game, setGame] = useState<GameState>(
+            createGame("")
         );
+
+        useEffect(() => {
+            if (!game.accountId)
+                return;
+
+            saveGame();
+        }, [game]);
 
     function updateGroup(group: Group) {
 
@@ -178,6 +171,8 @@ export function GameProvider({
                 assignTask,
                 completeTask,
                 getAssignments,
+                saveGame,
+                loadGame,
             }}>
             {children}
         </GameContext.Provider>
@@ -187,8 +182,7 @@ export function GameProvider({
 }
 
 export function useGame() {
-    const context =
-        useContext(GameContext);
+    const context = useContext(GameContext);
 
     if (!context) {
         throw new Error(

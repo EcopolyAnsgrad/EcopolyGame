@@ -5,9 +5,9 @@ import JeuNationalCartes from "../assets/printables/French printable game/FRENCH
 import JeuNationalIles from "../assets/printables/French printable game/FRENCH-NATIONAL_GAME/FRANCE_JEU_NATIONAL_ILES.pdf";
 import JeuNationalResources from "../assets/printables/French printable game/FRENCH-NATIONAL_GAME/FRANCE_JEU_NATIONAL_RESSOURCES_ENSEIGNANTS.pdf";
 import Regles from "../assets/printables/French printable game/FRENCH-NATIONAL_GAME/FRANCE_REGLES DU JEU.pdf";
-import HomeBlueButton from "../shared/UI/HomeBlueButton";
+import HomeBlueButton from "../shared/UI/HomeBlueButton"
 import "./French.css";
-import "./Home.css";
+import "./game/Home.css";
 import { Link } from "react-router-dom";
 
 export default function French() {
