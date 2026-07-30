@@ -26,6 +26,7 @@ function Home() {
                 
                 <div className="mainContent"> 
                     <h1 className="title">Welcome to the ECOPOLY GAMES</h1>
+                    <Link to="/login" className="mainButton"></Link>
                     <Link to="/groups" className="mainButton">
                         <div className="mainLink">GAME 1:</div>  
                         <div className="mainLink">ONLINE</div>  

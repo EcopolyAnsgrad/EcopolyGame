@@ -20,6 +20,7 @@ function App() {
       <Route path="/nature" element={<islands.Nature />} />
       <Route path="/recycling" element={<islands.Recycling />} />
       <Route path="/resources" element={<islands.Resources />} />
+      <Route path="/login" element={<Pages.Login />} />
     </Routes>
     );
 }
