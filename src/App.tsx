@@ -21,6 +21,7 @@ function App() {
       <Route path="/recycling" element={<islands.Recycling />} />
       <Route path="/resources" element={<islands.Resources />} />
       <Route path="/login" element={<Pages.Login />} />
+      <Route path="register" element={<Pages.Register />} />
     </Routes>
     );
 }
