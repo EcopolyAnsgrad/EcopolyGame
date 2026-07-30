@@ -1,8 +1,4 @@
-export async function register(
-    username:string,
-    password:string
-){
-
+export async function register(username:string, password:string){
     return fetch("/api/register",{
         method:"POST",
         body:JSON.stringify({
@@ -10,15 +6,10 @@ export async function register(
             password
         })
     });
-
 }
 
 
-export async function login(
-    username:string,
-    password:string
-){
-
+export async function login(username:string, password:string){
     return fetch("/api/login",{
         method:"POST",
         body:JSON.stringify({
@@ -26,5 +17,8 @@ export async function login(
             password
         })
     });
+}
 
+export async function logout (username: string,) {
+    
 }

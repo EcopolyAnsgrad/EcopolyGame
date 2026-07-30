@@ -2,8 +2,8 @@ import { createContext, useContext, useState, useEffect } from "react";
 import type { GameState } from "../types/GameState";
 import type { Group } from "../types/Group";
 import type { TaskAssignment } from "../types/TaskAssignment";
-import { COLORS } from "../../constants/colors";
 import {createGame} from "../CreateGame";
+import * as gameService from "../../services/gameService";
 
 type GameContextType = {
     game: GameState;
@@ -28,23 +28,21 @@ type GameContextType = {
         islandId: string
     ) => TaskAssignment[];
 
-    saveGame: () => Promise<void>;
-
-    loadGame: (game: GameState) => void;
+    setGame: (game: GameState) => void;
 };
 
 const GameContext = createContext<GameContextType | null>(null);
     
 export function GameProvider({children,}: {children: React.ReactNode;}) {
     async function saveGame(): Promise<void> {
-        // Later:
-        // await gameService.saveGame(game);
-
-        console.log("Saving game...");
+        await gameService.saveGame(game);
     }
 
     function loadGame(game: GameState): void {
+        setGame(game);
+    }
 
+    function setCurrentGame(game: GameState) {
         setGame(game);
     }
 
@@ -171,8 +169,7 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
                 assignTask,
                 completeTask,
                 getAssignments,
-                saveGame,
-                loadGame,
+                setGame: setCurrentGame,
             }}>
             {children}
         </GameContext.Provider>

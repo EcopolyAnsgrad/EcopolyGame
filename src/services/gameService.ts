@@ -20,10 +20,7 @@ export async function saveGame(game:GameState){
     );
 }*/
 
-export async function loadGame(
-    username: string
-): Promise<GameState | null> {
-
+export async function loadGame(username: string): Promise<GameState | null> {
     const raw =
         localStorage.getItem(username);
 
@@ -33,13 +30,9 @@ export async function loadGame(
     return JSON.parse(raw);
 }
 
-export async function saveGame(
-    game: GameState
-) {
-
+export async function saveGame(game: GameState): Promise<void> {
     localStorage.setItem(
         game.accountId,
         JSON.stringify(game)
     );
-
 }
