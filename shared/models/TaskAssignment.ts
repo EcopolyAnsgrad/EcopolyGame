@@ -5,4 +5,5 @@ export type TaskAssignment = {
     taskId: number;
     assignedGroupID?: number;
     completed: boolean;
+    completedAt?:string;
 };

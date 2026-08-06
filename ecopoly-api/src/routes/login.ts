@@ -1,8 +1,9 @@
 import type { Env } from "../types/Env";
-import type { LoginRequest } from "../models/LoginRequest";
+import type { LoginRequest } from "../../../shared/requests/LoginRequest";
 
 import { getAccountByUsername } from "../db/accounts";
 import { verifyPassword } from "../utils/passwords";
+import { getGame } from "../db/games";
 
 export async function login(request: Request, env: Env): Promise<Response> {
     try {
@@ -45,12 +46,13 @@ export async function login(request: Request, env: Env): Promise<Response> {
             );
         }
 
+        const game = await getGame(env, account.id as string);
+
         return Response.json({
             success: true,
             accountId: account.id,
+            game: game || null
         });
-
-
     } catch (e) {
         console.error("LOGIN ERROR:", e);
 

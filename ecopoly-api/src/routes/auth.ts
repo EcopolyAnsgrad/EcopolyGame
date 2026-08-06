@@ -1,5 +1,5 @@
 import type { Env } from "../types/Env";
-import type { RegisterRequest } from "../models/RegisterRequest";
+import type { RegisterRequest } from "../../../shared/requests/RegisterRequest";
 
 import {usernameExists, createAccount,} from "../db/accounts";
 import {createGame,} from "../db/games";
@@ -40,8 +40,7 @@ export async function register(request: Request, env: Env): Promise<Response> {
         return Response.json({
             success: true,
             accountId,
-            game,
-        });
+            });
     } catch (e) {
         console.error("REGISTER ERROR:", e);
 

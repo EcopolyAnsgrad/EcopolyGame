@@ -1,4 +1,4 @@
-import type {TaskDefinition} from "../../game/types/TaskDefinition"
+import type {TaskDefinition} from "../../../shared/models/TaskDefinition"
 import TaskCard from "./TaskCard";
 import "./tasks.css"
 import { useGame } from "../../game/context/GameContext";

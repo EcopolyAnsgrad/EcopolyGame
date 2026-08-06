@@ -1,19 +1,12 @@
 import { motion } from "framer-motion";
 import type { BubbleData } from "./types";
+import { COLORS } from "../../../constants/colors";
 
 interface Props {
     bubble: BubbleData;
     index: number;
 }
 
-const colors = {
-    red: "#ff5252",
-    blue: "#4285F4",
-    green: "#4CAF50",
-    yellow: "#FFD54F",
-    purple: "#AB47BC",
-    cyan: "#26C6DA",
-};
 
 export default function Bubble({ bubble, index }: Props) {
   const delay =
@@ -26,7 +19,7 @@ export default function Bubble({ bubble, index }: Props) {
             cx={bubble.x}
             cy={bubble.y}
             r={13}
-            fill={colors[bubble.color]}
+            fill={COLORS[bubble.color]}
             initial={{
                 scale: 0,
                 opacity: 0,

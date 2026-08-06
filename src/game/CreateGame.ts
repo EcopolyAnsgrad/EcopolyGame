@@ -1,9 +1,9 @@
 import { COLORS } from "../constants/colors";
-import type { GameState } from "./types/GameState";
+import type { GameState } from "../../shared/models/GameState";
 
 export function createGame(username: string): GameState {
     return {
-        ID: crypto.randomUUID(),
+        //ID: crypto.randomUUID(),
         accountId: username,
 
         createdAt: new Date().toISOString(),

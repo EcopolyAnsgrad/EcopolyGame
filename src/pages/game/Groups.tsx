@@ -55,7 +55,7 @@ const confirmGroupNames=()=>{
     <div className="mainPage">
         <h1>Group selection</h1>
         <button onClick={confirmGroupNames}>
-            Confirm Group Names
+            Play Ecopoly
         </button>
         
         <div className="groups-Grid">

@@ -1,11 +1,3 @@
-export type BubbleColor =
-    | "red"
-    | "blue"
-    | "green"
-    | "yellow"
-    | "purple"
-    | "cyan";
-
 export interface BubblePosition {
     id: number;
     x: number;
@@ -13,12 +5,12 @@ export interface BubblePosition {
 }
 
 export interface BubbleData extends BubblePosition {
-    color: BubbleColor;
+    color: number;
     visible: boolean;
 }
 
 export interface TaskCompletion {
     id: string;
-    color: BubbleColor;
+    color: string;
     completedAt: string;
 }

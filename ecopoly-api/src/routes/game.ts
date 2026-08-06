@@ -1,6 +1,6 @@
 import type { Env } from "../types/Env";
 import {getGame, updateGame} from "../db/games";
-import type { GameState } from "../../../src/game/types/GameState";
+import type { GameState } from "../../../shared/models/GameState";
 
 
 export async function loadGame(request: Request, env: Env): Promise<Response> {

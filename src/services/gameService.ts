@@ -1,4 +1,4 @@
-import type {GameState} from "../game/types/GameState";
+import type {GameState} from "../../shared/models/GameState";
 
 
 /*export async function loadGame(username:string){

@@ -1,4 +1,4 @@
-import type { GameState } from "./GameState";
+import type { GameState } from "../../../shared/models/GameState";
 
 export type LoadGameResponse = {
     game: GameState;

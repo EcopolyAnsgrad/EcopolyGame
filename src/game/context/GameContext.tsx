@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import type { GameState } from "../types/GameState";
-import type { Group } from "../types/Group";
-import type { TaskAssignment } from "../types/TaskAssignment";
+import type { GameState } from "../../../shared/models/GameState";
+import type { Group } from "../../../shared/models/Group";
+import type { TaskAssignment } from "../../../shared/models/TaskAssignment";
 import {createGame} from "../CreateGame";
 import * as gameService from "../../services/gameService";
 

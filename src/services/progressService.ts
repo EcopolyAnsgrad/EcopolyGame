@@ -1,34 +1,28 @@
 import type { TaskCompletion } from "../shared/components/ProgressGlass/types.tsx";
 
+import { loadGame } from "../game/api/gameApi.ts";
 
-export async function getProgressHistory()
-: Promise<TaskCompletion[]> {
+export async function getProgressHistory(accountId: string): Promise<TaskCompletion[]> {
+    const game = await loadGame(accountId);
 
-    return [
-        {
-            id: "1",
-            color: "red",
-            completedAt: "2026-07-16T10:00:00"
-        },
-        {
-            id: "2",
-            color: "blue",
-            completedAt: "2026-07-16T10:05:00"
-        },
-        {
-            id: "3",
-            color: "red",
-            completedAt: "2026-07-16T10:10:00"
-        },
-        {
-            id: "4",
-            color: "green",
-            completedAt: "2026-07-16T10:20:00"
-        },
-        {
-            id: "5",
-            color: "yellow",
-            completedAt: "2026-07-16T10:30:00"
-        }
-    ];
+    return Object.values(game.assignments)
+        .flat()
+        .filter(a => a.completed)
+        .sort(
+            (a,b)=>
+                a.completedAt!.localeCompare(
+                    b.completedAt!
+                )
+        )
+        .map(a=>{
+            const group = game.groups.find(
+                    g=>g.id===a.assignedGroupID
+                );
+
+            return{
+                id:`${a.islandId}-${a.taskId}`,
+                color:group?.color ?? "gray",
+                completedAt:a.completedAt!
+            };
+        });
 }

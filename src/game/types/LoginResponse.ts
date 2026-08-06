@@ -1,5 +1,5 @@
-import type { Account } from "./Account";
-import type { GameState } from "./GameState";
+import type { Account } from "../../../shared/models/Account";
+import type { GameState } from "../../../shared/models/GameState";
 
 export type LoginResponse = {
     account: Account;

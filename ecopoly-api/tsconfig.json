@@ -42,5 +42,5 @@
 		]
 	},
 	"exclude": ["test"],
-	"include": ["worker-configuration.d.ts", "src/**/*.ts"]
+	"include": ["worker-configuration.d.ts", "src/**/*.ts", "../shared/requests/LoginRequest.ts", "../shared/requests/GameUpdateRequest.ts", "../shared/requests/RegisterRequest.ts", "../shared/responses/RegisterResponse.ts", "../shared/responses/LoginResponse.ts"]
 }

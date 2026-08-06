@@ -22,5 +22,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "shared/models/Account.ts", "shared/models/GameState.ts", "shared/models/Group.ts", "shared/models/TaskAssignment.ts", "shared/models/TaskDefinition.ts"]
 }
