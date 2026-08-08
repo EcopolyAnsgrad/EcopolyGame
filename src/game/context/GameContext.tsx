@@ -1,7 +1,8 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useRef, useEffect,} from "react";
 import type { GameState } from "../../../shared/models/GameState";
 import type { Group } from "../../../shared/models/Group";
 import type { TaskAssignment } from "../../../shared/models/TaskAssignment";
+import * as gameApi from "../api/gameApi";
 
 type GameContextType = {
     game: GameState | null;
@@ -26,37 +27,22 @@ type GameContextType = {
     ) => void;
 
     getAssignments: (islandId: string) => TaskAssignment[];
-
-    //setGame: (game: GameState) => void;
 };
 
 const GameContext = createContext<GameContextType | null>(null);
     
 export function GameProvider({children,}: {children: React.ReactNode;}) {
+    const skipNextSave = useRef(false);
     const [game, setGame] = useState<GameState | null>(null);
 
-    /*async function saveGame(): Promise<void> {
-        await gameService.saveGame(game);
-    }
-
-    function loadGame(game: GameState): void {
-        setGame(game);
-    }*/
-
     function setCurrentGame(newGame: GameState): void {
+        skipNextSave.current = true;
         setGame(newGame);
     }
 
     function clearCurrentGame(): void {
         setGame(null);
     }
-
-        /*useEffect(() => {
-            if (!game.id)
-                return;
-
-            saveGame();
-        }, [game]);*/
 
     function updateGroup(group: Group) {
         setGame(current => {
@@ -66,8 +52,6 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
 
             return {
                 ...current,
-                updatedAt:
-                    new Date().toISOString(),
                 groups:
                     current.groups.map(g =>
                         g.id === group.id
@@ -114,10 +98,6 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
 
             return {
                 ...current,
-
-                updatedAt:
-                    new Date().toISOString(),
-
                 assignments: {
                     ...current.assignments,
 
@@ -151,7 +131,6 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
 
             return {
                 ...current,
-                updatedAt: new Date().toISOString(),
                 assignments: {
                     ...current.assignments,
                     [islandId]: updatedAssignments,
@@ -170,6 +149,45 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
         );
     }
 
+    useEffect(() => {
+        if (!game) {
+            return;
+        }
+
+        if (skipNextSave.current) {
+            skipNextSave.current = false;
+
+            return;
+        }
+
+        const timeout = window.setTimeout(
+                async () => {
+                    try {
+                        const response = await gameApi.saveGame({
+                                game,
+                            });
+
+                        if (response.game) {
+                            skipNextSave.current = true;
+
+                            setGame(response.game);
+                        }
+
+                    } catch (error) {
+                        console.error(
+                            "Autosave failed:",
+                            error
+                        );
+                    }
+                },
+                800
+            );
+
+        return () => {
+            window.clearTimeout(timeout);
+        };
+    }, [game]);
+
     return (
         <GameContext.Provider
             value={{
@@ -184,9 +202,7 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
             }}>
             {children}
         </GameContext.Provider>
-
     );
-
 }
 
 export function useGame() {
