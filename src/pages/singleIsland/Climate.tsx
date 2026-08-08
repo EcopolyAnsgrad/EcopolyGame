@@ -4,9 +4,7 @@ import IslandBoard from "../../shared/Quiz/IslandBoard";
 
 export default function Climate() {
     return (
-
         <div className="island-page">
-
             <img
                 src={islandClimate}
                 className="island-image"
@@ -17,9 +15,6 @@ export default function Climate() {
                 tasks={climateTasks}         
                 islandId="climate"   
             />
-
         </div>
-
     );
-
 }

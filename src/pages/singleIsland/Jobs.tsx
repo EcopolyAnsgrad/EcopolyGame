@@ -4,9 +4,7 @@ import IslandBoard from "../../shared/Quiz/IslandBoard";
 
 export default function Jobs() {
     return (
-
         <div className="island-page">
-
             <img
                 src={islandJobs}
                 className="island-image"
@@ -17,9 +15,6 @@ export default function Jobs() {
                 tasks={jobsTasks}            
                 islandId="jobs"
             />
-
         </div>
-
     );
-
 }

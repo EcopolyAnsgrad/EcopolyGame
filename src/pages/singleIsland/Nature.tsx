@@ -4,9 +4,7 @@ import IslandBoard from "../../shared/Quiz/IslandBoard";
 
 export default function Nature() {
     return (
-
         <div className="island-page">
-
             <img
                 src={islandNature}
                 className="island-image"
@@ -17,9 +15,6 @@ export default function Nature() {
                 tasks={natureTasks}            
                 islandId="nature"
             />
-
         </div>
-
     );
-
 }

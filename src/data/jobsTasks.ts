@@ -51,6 +51,6 @@ export const jobsTasks: TaskDefinition[] = [{
     {
         id: 9,
         islandId: "jobs",
-        title: "rolepaying",
+        title: "roleplaying",
         description: "Watch the film \"Wall‑E\". Invent a roleplay with the scientist to learn about caring for Earth."    
     }]

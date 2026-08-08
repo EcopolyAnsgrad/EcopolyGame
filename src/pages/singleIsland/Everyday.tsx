@@ -4,9 +4,7 @@ import IslandBoard from "../../shared/Quiz/IslandBoard";
 
 export default function Everyday() {
     return (
-
         <div className="island-page">
-
             <img
                 src={islandEveryday}
                 className="island-image"
@@ -17,9 +15,6 @@ export default function Everyday() {
                 tasks={everydayTasks}          
                 islandId="everyday"  
             />
-
         </div>
-
     );
-
 }

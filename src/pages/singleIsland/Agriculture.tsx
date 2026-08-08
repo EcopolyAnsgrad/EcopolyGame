@@ -4,9 +4,7 @@ import IslandBoard from "../../shared/Quiz/IslandBoard";
 
 export default function Agriculture() {
     return (
-
         <div className="island-page">
-
             <img
                 src={islandAgriculture}
                 className="island-image"
@@ -14,11 +12,9 @@ export default function Agriculture() {
             />
 
             <IslandBoard
-                tasks={agricultureTasks} islandId="agriculture"            
+                tasks={agricultureTasks} 
+                islandId="agriculture"            
             />
-
         </div>
-
     );
-
 }

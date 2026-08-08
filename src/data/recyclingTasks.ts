@@ -18,7 +18,7 @@ export const recyclingTasks: TaskDefinition[] = [{
     {
         id: 4,
         islandId: "recycling",
-        title: "second live",
+        title: "second life",
         description: "Investigate and create a diagram showing what will happen to a soda can you have just thrown away in a recycling bin."    },    
     {
         id: 5,

@@ -4,9 +4,7 @@ import IslandBoard from "../../shared/Quiz/IslandBoard";
 
 export default function Recycling() {
     return (
-
         <div className="island-page">
-
             <img
                 src={islandRecycling}
                 className="island-image"
@@ -15,11 +13,8 @@ export default function Recycling() {
 
             <IslandBoard
                 tasks={recyclingTasks}    
-                islandId="reycling"        
+                islandId="recycling"        
             />
-
         </div>
-
     );
-
 }

@@ -14,10 +14,16 @@ type TaskCardProps = {
 function TaskCard({task, assignedGroup, completed, onAssign, onCompletedChange,}: TaskCardProps) {
     if (!assignedGroup) {
         return (
-            <div
-                className="task-card"
+            <button
+                type="button"
+                className="task-card task-card--face-down"
                 onClick={onAssign}
-            />
+                aria-label={`Assign task ${task.id}`}
+            >
+                <span className="task-card-number">
+                    {task.id}
+                </span>
+            </button>
         );
     }
 

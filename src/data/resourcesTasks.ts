@@ -3,7 +3,7 @@ import type { TaskDefinition } from "../../shared/models/TaskDefinition";
 export const resourcesTasks: TaskDefinition[] = [{
         id: 1,
         islandId: "resources",
-        title: "enerized quiz",
+        title: "energized quiz",
         description: "Prepare 5 questions about the renewable energy sources and interview a biology teacher. "    },
     {
         id: 2,
@@ -38,7 +38,7 @@ export const resourcesTasks: TaskDefinition[] = [{
     {
         id: 8,
         islandId: "resources",
-        title: "resource proffessor",
+        title: "resource professor",
         description: "Give a three-minute talk about one resource (like oil or gold): where it's found, development of price ... ."    },    
     {
         id: 9,

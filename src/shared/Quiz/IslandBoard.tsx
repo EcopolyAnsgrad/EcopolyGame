@@ -16,60 +16,65 @@ function IslandBoard({islandId, tasks,}: IslandBoardProps) {
         completeTask,
     } = useGame();
 
-    const assignments =
-        getAssignments(islandId);
+    const assignments = getAssignments(islandId);
+
+console.log("IslandBoard", {
+    islandId,
+    tasks,
+    groups,
+    assignments,
+});
 
     function assignRandomGroup(taskId:number){
-        const usedGroups =
-            assignments
-                .filter(a => a.assignedGroupID)
-                .map(a => a.assignedGroupID!);
-
-        const available =
-            groups.filter(
-                g => !usedGroups.includes(g.id)
+        const existing = assignments.find(
+                assignment => assignment.taskId === taskId
             );
 
-        if(available.length===0)
+        if (existing?.assignedGroupId) {
             return;
+        }
 
-        const random =
-            available[
-                Math.floor(
-                    Math.random()*available.length
+         const usedGroupIds = assignments
+                .filter(
+                    assignment => assignment.assignedGroupId !== undefined
                 )
-            ];
+                .map(
+                    assignment => assignment.assignedGroupId!
+                );
+
+        const availableGroups = groups.filter(
+                group => !usedGroupIds.includes(group.id)
+            );
+
+        if (availableGroups.length === 0) {
+            return;
+        }
+
+        const randomIndex = Math.floor(
+                Math.random() * availableGroups.length
+            );
+
+        const randomGroup = availableGroups[randomIndex];
 
         assignTask(
             islandId,
             taskId,
-            random.id
+            randomGroup.id
         );
     }
 
-        function updateCompleted(taskId: number, completed: boolean) {
-            completeTask(
-                islandId,
-                taskId,
-                completed
-            );
-        }
-
-
     return(
         <div className="task-grid">
-
         {tasks.map(task=>{
-
-            const assignment =
-                assignments.find(
+            const assignment = assignments.find(
                     a=>a.taskId===task.id
                 )!;
 
-                const assignedGroup =
-                    groups.find(
-                        g => g.id === assignment?.assignedGroupID
-                    );
+            const assignedGroup =
+                assignment?.assignedGroupId
+                    ? groups.find(
+                        group => group.id === assignment.assignedGroupId
+                        ) : undefined;
 
             return (
 
@@ -81,18 +86,15 @@ function IslandBoard({islandId, tasks,}: IslandBoardProps) {
                     onAssign={()=>
                         assignRandomGroup(task.id)
                     }
-                        onCompletedChange={(completed) => {
-                            updateCompleted(task.id, completed);
-                        }}
-
+                    onCompletedChange={(completed) => completeTask(
+                            islandId,
+                            task.id,
+                            completed
+                        )}
                 />
-
             );
-
         })}
-
         </div>
-
     );
 }
 

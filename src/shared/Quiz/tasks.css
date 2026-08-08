@@ -1,21 +1,32 @@
-.task-card.hidden{
-
-    background:black;
-    color:white;
-
-    cursor:pointer;
-
-    min-height:220px;
-
-    font-size:48px;
-
+.task-card {
+    min-height: 220px;
+    width: 100%;
+    border: none;
+    border-radius: 16px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.task-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+.task-card--face-down {
+    background-color: black;
+    color: white;
+    cursor: pointer;
 
-    width:900px;
-    margin:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-card-number {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.task-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+
+    width: min(900px, 90vw);
+    margin: 40px auto;
 }
