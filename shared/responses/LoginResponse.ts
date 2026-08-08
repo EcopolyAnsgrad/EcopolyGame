@@ -4,7 +4,7 @@ export interface LoginResponse {
     success: boolean;
     message?: string;
 
-    accountId?: string;
+    token?: string;
 
     game?: GameState | null;
 }

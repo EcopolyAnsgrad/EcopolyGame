@@ -4,6 +4,7 @@ import type { LoginRequest } from "../../../shared/requests/LoginRequest";
 import { getAccountByUsername } from "../db/accounts";
 import { verifyPassword } from "../utils/passwords";
 import { getGame } from "../db/games";
+import { createSession } from "../db/sessions";
 
 export async function login(request: Request, env: Env): Promise<Response> {
     try {
@@ -46,12 +47,20 @@ export async function login(request: Request, env: Env): Promise<Response> {
             );
         }
 
-        const game = await getGame(env, account.id as string);
+        const token = await createSession(
+                env,
+                account.id as string
+            );
+
+        const game = await getGame(
+                env,
+                account.id as string
+            );
 
         return Response.json({
             success: true,
-            accountId: account.id,
-            game: game, 
+            token,
+            game,
         });
     } catch (e) {
         console.error("LOGIN ERROR:", e);

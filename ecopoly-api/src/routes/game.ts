@@ -1,14 +1,27 @@
 import type { Env } from "../types/Env";
 import {getGame, updateGame} from "../db/games";
 import type { GameState } from "../../../shared/models/GameState";
+import { requireAccount } from "../utils/auth";
+import { GameUpdateRequest } from "../../../shared/requests/GameUpdateRequest";
 
 
 export async function loadGame(request: Request, env: Env): Promise<Response> {
-    const url = new URL(request.url);
+    const accountId = await requireAccount(
+            request,
+            env
+        );
 
-    const accountId = url.searchParams.get(
-        "accountId"
-    );
+    if (!accountId) {
+        return Response.json(
+            {
+                success: false,
+                message: "Unauthorized",
+            },
+            {
+                status: 401,
+            }
+        );
+    }
 
     if (!accountId) {
         return Response.json(
@@ -46,30 +59,44 @@ export async function loadGame(request: Request, env: Env): Promise<Response> {
 }
 
 export async function saveGame(request: Request, env: Env): Promise<Response> {
-    const body = await request.json() as {
-        accountId:string;
-        game:GameState;
-    };
+    const accountId = await requireAccount(
+            request,
+            env
+        );
 
-    if (!body.accountId || !body.game) {
+    if (!accountId) {
         return Response.json(
             {
-                success:false,
-                message:"Missing data"
+                success: false,
+                message: "Unauthorized",
             },
             {
-                status:400
+                status: 401,
+            }
+        );
+    }
+
+    const body = await request.json() as GameUpdateRequest;
+
+    if (!body.game) {
+        return Response.json(
+            {
+                success: false,
+                message: "Missing game",
+            },
+            {
+                status: 400,
             }
         );
     }
 
     await updateGame(
         env,
-        body.accountId,
+        accountId,
         body.game
     );
 
     return Response.json({
-        success:true
+        success: true,
     });
 }
