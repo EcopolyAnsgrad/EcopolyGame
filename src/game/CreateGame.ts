@@ -1,23 +1,16 @@
-import { COLORS } from "../constants/colors";
+
 import type { GameState } from "../../shared/models/GameState";
+import type { Group } from "../../shared/models/Group";
 
-export function createGame(username: string): GameState {
+export function createGame(groups: Group[]): GameState {
+    const now = new Date().toISOString();
+
     return {
-        //ID: crypto.randomUUID(),
-        accountId: username,
-
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-
-        groups: COLORS.slice(0, 6).map(
-                (color, index) => ({
-                    id: index + 1,
-                    name: "",
-                    color,
-                })
-            ),
+        id: crypto.randomUUID(),
+        createdAt: now,
+        updatedAt: now,
+        version: 0,
+        groups,
         assignments: {},
-
-        version: 1,
     };
 }

@@ -1,30 +1,48 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { ansgard as logo } from "../images/logos";
+import * as gameApi from "../game/api/gameApi";
+import { useGame } from "../game/context/GameContext";
 
 import "./Login.css";
 
 
 function Login() {
     const navigate = useNavigate();
-
+    const [error, setError] = useState("");
+    const {setCurrentGame} = useGame();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    async function handleLogin(e: React.FormEvent) {
-        e.preventDefault();
+async function handleLogin(e: React.FormEvent) {
+    e.preventDefault();
+    setError("");
 
-        // TODO:
-        // const response = await login(username, password);
-        // await loadGame(response.gameState);
+    try {
+        const response = await gameApi.login({
+                username,
+                password,
+            });
 
-        console.log("Login", {
-            username,
-            password,
-        });
+        if (response.game) {
+            setCurrentGame(
+                response.game
+            );
 
-        navigate("/groups");
+            navigate("/islands");
+        } else {
+            /* Account exists but there is no GameState yet. User needs to configure groups.*/
+            navigate("/groups");
+        }
+
+    } catch (error) {
+        setError(
+            error instanceof Error
+                ? error.message
+                : "Login failed."
+        );
     }
+}
 
     return (
         <div className="login-page">

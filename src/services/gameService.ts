@@ -32,7 +32,7 @@ export async function loadGame(username: string): Promise<GameState | null> {
 
 export async function saveGame(game: GameState): Promise<void> {
     localStorage.setItem(
-        game.accountId,
+        game.id,
         JSON.stringify(game)
     );
 }

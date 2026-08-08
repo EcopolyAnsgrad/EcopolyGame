@@ -1,14 +1,15 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import type { GameState } from "../../../shared/models/GameState";
 import type { Group } from "../../../shared/models/Group";
 import type { TaskAssignment } from "../../../shared/models/TaskAssignment";
-import {createGame} from "../CreateGame";
-import * as gameService from "../../services/gameService";
 
 type GameContextType = {
-    game: GameState;
-
+    game: GameState | null;
     groups: Group[];
+
+    setCurrentGame: (game: GameState) => void;
+
+    clearCurrentGame: () => void;
 
     updateGroup: (group: Group) => void;
 
@@ -24,53 +25,57 @@ type GameContextType = {
         completed: boolean
     ) => void;
 
-    getAssignments: (
-        islandId: string
-    ) => TaskAssignment[];
+    getAssignments: (islandId: string) => TaskAssignment[];
 
-    setGame: (game: GameState) => void;
+    //setGame: (game: GameState) => void;
 };
 
 const GameContext = createContext<GameContextType | null>(null);
     
 export function GameProvider({children,}: {children: React.ReactNode;}) {
-    async function saveGame(): Promise<void> {
+    const [game, setGame] = useState<GameState | null>(null);
+
+    /*async function saveGame(): Promise<void> {
         await gameService.saveGame(game);
     }
 
     function loadGame(game: GameState): void {
         setGame(game);
+    }*/
+
+    function setCurrentGame(newGame: GameState): void {
+        setGame(newGame);
     }
 
-    function setCurrentGame(game: GameState) {
-        setGame(game);
+    function clearCurrentGame(): void {
+        setGame(null);
     }
 
-    const [game, setGame] = useState<GameState>(
-            createGame("")
-        );
-
-        useEffect(() => {
-            if (!game.accountId)
+        /*useEffect(() => {
+            if (!game.id)
                 return;
 
             saveGame();
-        }, [game]);
+        }, [game]);*/
 
     function updateGroup(group: Group) {
+        setGame(current => {
+            if (!current) {
+                return current;
+            }
 
-        setGame(current => ({
-            ...current,
-            
-            updatedAt: new Date().toISOString(),
-
-            groups:
-                current.groups.map(g =>
-                    g.id === group.id
-                        ? group
-                        : g
-                ),
-        }));
+            return {
+                ...current,
+                updatedAt:
+                    new Date().toISOString(),
+                groups:
+                    current.groups.map(g =>
+                        g.id === group.id
+                            ? group
+                            : g
+                    ),
+            };
+        });
     }
 
     function assignTask(
@@ -79,40 +84,43 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
         groupId: number
     ) {
         setGame(current => {
-            const islandAssignments =
-                current.assignments[islandId] ?? [];
+            if (!current) {
+                return current;
+            }
 
-            const exists =
-                islandAssignments.some(
-                    assignment =>
-                        assignment.taskId === taskId
+            const islandAssignments = current.assignments[islandId] ?? [];
+
+            const exists = islandAssignments.some(
+                    assignment => assignment.taskId === taskId
                 );
 
-            const updatedAssignments =
-                exists ? islandAssignments.map(assignment =>
-                        assignment.taskId === taskId
+            const updatedAssignments = exists ? islandAssignments.map(
+                    assignment => assignment.taskId === taskId
                             ? {
-                                ...assignment,
-                                assignedGroupID: groupId,
-                            }
+                                  ...assignment,
+                                  assignedGroupId: groupId,
+                              }
                             : assignment
-                ):[
-                    ...islandAssignments,
-                    {
-                        islandId,
-                        taskId,
-                        assignedGroupID: groupId,
-                        completed: false,
-                    }
-                ];
+                )
+                : [
+                      ...islandAssignments,
+                      {
+                          islandId,
+                          taskId,
+                          assignedGroupId: groupId,
+                          completed: false,
+                      },
+                  ];
 
             return {
                 ...current,
 
-                updatedAt: new Date().toISOString(),
+                updatedAt:
+                    new Date().toISOString(),
 
                 assignments: {
                     ...current.assignments,
+
                     [islandId]:
                         updatedAssignments,
                 },
@@ -126,50 +134,53 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
         completed: boolean
     ) {
         setGame(current => {
-            const islandAssignments =
-                current.assignments[islandId] ?? [];
+            if (!current) {
+                return current;
+            }
 
-            const updatedAssignments =
-                islandAssignments.map(
-                    assignment =>
-                        assignment.taskId === taskId
+            const islandAssignments = current.assignments[islandId] ?? [];
+
+            const updatedAssignments = islandAssignments.map(
+                    assignment => assignment.taskId === taskId
                             ? {
-                                ...assignment,
-                                completed,
-                            }: assignment
-                        );
+                                  ...assignment,
+                                  completed,
+                              }
+                            : assignment
+                );
 
             return {
                 ...current,
-
                 updatedAt: new Date().toISOString(),
-
                 assignments: {
                     ...current.assignments,
-
-                    [islandId]:
-                        updatedAssignments,
+                    [islandId]: updatedAssignments,
                 },
             };
         });
     }
 
-    function getAssignments(
-        islandId: string
-    ): TaskAssignment[] {
-        return game.assignments[islandId] ?? [];
+    function getAssignments(islandId: string): TaskAssignment[] {
+        if (!game) {
+            return [];
+        }
+
+        return (
+            game.assignments[islandId] ?? []
+        );
     }
 
     return (
         <GameContext.Provider
             value={{
                 game,
-                groups: game.groups,
+                groups: game?.groups ?? [],
+                setCurrentGame,
+                clearCurrentGame,
                 updateGroup,
                 assignTask,
                 completeTask,
                 getAssignments,
-                setGame: setCurrentGame,
             }}>
             {children}
         </GameContext.Provider>

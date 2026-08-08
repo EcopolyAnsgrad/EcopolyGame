@@ -63,7 +63,6 @@ export async function saveGame(env: Env, accountId: string, game: GameState): Pr
 
     const savedGame: GameState = {
         ...game,
-        accountId,
         updatedAt: now,
         version: game.version + 1,
     };

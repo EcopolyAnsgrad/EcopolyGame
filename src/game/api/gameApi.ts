@@ -1,46 +1,145 @@
-// services/gameApi.ts
-
-import type { GameState } from "../../../shared/models/GameState";
-import type { LoadGameResponse } from "../../../shared/responses/LoadGameResponse";
+import type { LoginRequest } from "../../../shared/requests/LoginRequest";
+import type { RegisterRequest } from "../../../shared/requests/RegisterRequest";
 import type { GameUpdateRequest } from "../../../shared/requests/GameUpdateRequest";
-import type { UpdateGameResponse } from "../../../shared/responses/UpdateGameResponse";
 
-const API = "/api";
+import type { LoginResponse } from "../../../shared/responses/LoginResponse";
+import type { RegisterResponse } from "../../../shared/responses/RegisterResponse";
+import type { LoadGameResponse } from "../../../shared/responses/LoadGameResponse";
+import type { SaveGameResponse } from "../../../shared/responses/SaveGameResponse";
 
-export async function loadGame(accountId: string): Promise<GameState> {
-    const response = await fetch(
-        `${API}/game?accountId=${accountId}`
-    );
+const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8787";
+const TOKEN_KEY = "ecopoly-session-token";
 
-    if (!response.ok)
-        throw new Error("Cannot load game");
-
-    const data = await response.json() as LoadGameResponse;
-
-    return data.game;
+export function getSessionToken(): string | null {
+    return localStorage.getItem(TOKEN_KEY);
 }
 
-export async function saveGame(game: GameState): Promise<void> {
-    const body: GameUpdateRequest = {
-        game
-    };
+export function setSessionToken(token: string): void {
+    localStorage.setItem(TOKEN_KEY, token);
+}
 
+export function clearSessionToken(): void {
+    localStorage.removeItem(TOKEN_KEY);
+}
+
+function authHeaders(): HeadersInit {
+    const token = getSessionToken();
+
+    return {
+        "Content-Type": "application/json",
+        ...(token
+            ? {
+                  Authorization: `Bearer ${token}`,
+              }
+            : {}),
+    };
+}
+
+export async function register(request: RegisterRequest): Promise<RegisterResponse> {
     const response = await fetch(
-        `${API}/game`,
+        `${API_URL}/api/register`,
         {
-            method: "PUT",
+            method: "POST",
             headers: {
-                "Content-Type":"application/json"
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                accountId: game.accountId,
-                game
-            })
+
+            body: JSON.stringify(request),
         }
     );
 
-    if (!response.ok)
-        throw new Error("Cannot save game");
+    const data = await response.json() as RegisterResponse;
 
-    await response.json() as UpdateGameResponse;
+    if (!response.ok) {
+        throw new Error(
+            data.message ?? "Registration failed."
+        );
+    }
+
+    return data;
+}
+
+export async function login(request: LoginRequest): Promise<LoginResponse> {
+    const response = await fetch(
+        `${API_URL}/api/login`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(request),
+        }
+    );
+
+    const data = await response.json() as LoginResponse;
+
+    if (!response.ok) {
+        throw new Error(
+            data.message ?? "Login failed."
+        );
+    }
+
+    if (data.token) {
+        setSessionToken(data.token);
+    }
+
+    return data;
+}
+
+export async function loadGame(): Promise<LoadGameResponse> {
+    const response = await fetch(
+        `${API_URL}/api/game`,
+        {
+            method: "GET",
+            headers: authHeaders(),
+        }
+    );
+
+    if (response.status === 401) {
+        clearSessionToken();
+
+        throw new Error(
+            "Your session has expired. Please log in again."
+        );
+    }
+
+    const data = await response.json() as LoadGameResponse;
+
+    if (!response.ok) {
+        throw new Error(
+            data.message ?? "Could not load game."
+        );
+    }
+
+    return data;
+}
+
+export async function saveGame(request: GameUpdateRequest): Promise<SaveGameResponse> {
+    const response = await fetch(
+        `${API_URL}/api/game`,
+        {
+            method: "PUT",
+            headers: authHeaders(),
+            body: JSON.stringify(request),
+        }
+    );
+
+    if (response.status === 401) {
+        clearSessionToken();
+
+        throw new Error(
+            "Your session has expired. Please log in again."
+        );
+    }
+
+    const data = await response.json() as SaveGameResponse;
+
+    if (!response.ok) {
+        throw new Error(
+            data.message ?? "Could not save game."
+        );
+    }
+
+    return data;
 }

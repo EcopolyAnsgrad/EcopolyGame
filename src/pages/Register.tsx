@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { ansgard as logo } from "../images/logos";
+import * as gameApi from "../game/api/gameApi";
 
 import "./Login.css";
 
@@ -15,32 +16,33 @@ function Register() {
 
     const [error, setError] = useState("");
 
-    async function handleRegister(e: React.FormEvent) {
-        e.preventDefault();
+async function handleRegister(e: React.FormEvent) {
+    e.preventDefault();
 
-        if (password !== confirmPassword) {
-            setError("Passwords do not match.");
-            return;
-        }
+    if (password !== confirmPassword) {
+        setError("Passwords do not match.");
+        return;
+    }
 
-        setError("");
+    setError("");
 
-        // TODO:
-        // const response = await register({
-        //     username,
-        //     email,
-        //     password,
-        // });
-        // await loadGame(response.gameState);
-
-        console.log("Register", {
+    try {
+        await gameApi.register({
             username,
-            email,
             password,
+            email:
+                email.trim() || undefined,
         });
 
-        navigate("/groups");
+        navigate("/login");
+    } catch (error) {
+        setError(
+            error instanceof Error
+                ? error.message
+                : "Registration failed."
+        );
     }
+}
 
     return (
         <div className="login-page">

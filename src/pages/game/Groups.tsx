@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import "./Home.css";
 import { useState } from "react";
 import GroupCard from "../../shared/Quiz/GroupCard.tsx";
@@ -10,46 +9,96 @@ import rules from "../../assets/printables/rules for the ecopoly-game.pdf"
 import Glass from "../../shared/components/ProgressGlass/Glass.tsx";
 import {useProgressHistory} from "../../hooks/useProgressHistory.ts";
 import { useGame } from '../../game/context/GameContext.tsx';
+import { COLORS } from '../../constants/colors.ts';
+import type { Group } from '../../../shared/models/Group.ts';
+import { createGame } from '../../game/CreateGame.ts';
+import * as gameApi from "../../game/api/gameApi";
+import { useNavigate } from "react-router-dom";
 
 function Groups() {
     const [lockedGroups, setLockedGroups] = useState<number[]>([]);
     const { history } = useProgressHistory();
+    const navigate = useNavigate();
 
-    const { groups, updateGroup } = useGame();
+    const { setCurrentGame } = useGame();
+
+    const [groups, setGroups] = useState<Group[]>(
+        COLORS.slice(0, 6).map(
+            (color, index) => ({
+                id: index + 1,
+                name: "",
+                color,
+            })
+        )
+    );
 
     function handleNameChange(id: number, name: string) {
+        setGroups(current =>
+            current.map(group =>
+                group.id === id
+                    ? {
+                        ...group,
+                        name,
+                    }
+                    : group
+            )
+        );
+    }
 
-        const group = groups.find(g => g.id === id);
+    async function handleStartGame() {
+        const valid = groups.every(
+                group => group.name.trim() !== ""
+            );
 
-        if (!group) return;
+        if (!valid) {return;}
 
-        updateGroup({
-            ...group,
-            name,
-        });
+        const newGame = createGame(groups);
 
+        try {
+            const response = await gameApi.saveGame({
+                    game: newGame,
+                });
+
+            if (!response.game) {
+                throw new Error(
+                    "Server did not return saved game."
+                );
+            }
+
+            setCurrentGame(
+                response.game
+            );
+
+            navigate("/islands");
+
+        } catch (error) {
+            console.error(
+                "Could not start game",
+                error
+            );
+        }
     }
     
     function handleColorChange(id: number, color: string) {
-
-        const group =
-            groups.find(g => g.id === id);
-
-        if (!group) return;
-
-        updateGroup({
-            ...group,
-            color,
-        });
+        setGroups(current =>
+            current.map(group =>
+                group.id === id
+                    ? {
+                        ...group,
+                        color,
+                    }
+                    : group
+            )
+        );
     }
 
-const confirmGroupNames=()=>{
-    setLockedGroups(
-        groups
-            .filter(group => group.name.trim() !== "")
-            .map(group => group.id)
-    );
-};
+    const confirmGroupNames=()=>{
+        setLockedGroups(
+            groups
+                .filter(group => group.name.trim() !== "")
+                .map(group => group.id)
+        );
+    };
 
   return (
     <div className="mainPage">
@@ -74,9 +123,12 @@ const confirmGroupNames=()=>{
                     <a href={rules} target="_blank" rel="noopener noreferrer">
                         <BlueButton title="Rules (for teachers)" className="blue-button" />
                     </a>
-                    <Link to="/islands" className="blue-button">
-                        <BlueButton title="Play Ecopoly" className="blue-button" />
-                    </Link>
+                    <div onClick={handleStartGame}>
+                        <BlueButton
+                            title="Play Ecopoly"
+                            className="blue-button"
+                        />
+                    </div>
                     <Glass history={history} />
         </div>
 
