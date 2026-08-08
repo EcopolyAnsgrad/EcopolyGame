@@ -1,5 +1,5 @@
 import type { Env } from "../types/Env";
-import {getGame, updateGame} from "../db/games";
+import {getGame, saveGame as saveGameToDb} from "../db/games";
 import type { GameState } from "../../../shared/models/GameState";
 import { requireAccount } from "../utils/auth";
 import { GameUpdateRequest } from "../../../shared/requests/GameUpdateRequest";
@@ -23,18 +23,6 @@ export async function loadGame(request: Request, env: Env): Promise<Response> {
         );
     }
 
-    if (!accountId) {
-        return Response.json(
-            {
-                success:false,
-                message:"Missing accountId"
-            },
-            {
-                status:400
-            }
-        );
-    }
-
     const game = await getGame(
         env,
         accountId
@@ -43,18 +31,15 @@ export async function loadGame(request: Request, env: Env): Promise<Response> {
     if (!game) {
         return Response.json(
             {
-                success:false,
-                message:"Game not found"
-            },
-            {
-                status:404
+                success: true,
+                game: null,
             }
         );
     }
 
     return Response.json({
-        success:true,
-        game
+        success: true,
+        game,
     });
 }
 
@@ -90,7 +75,7 @@ export async function saveGame(request: Request, env: Env): Promise<Response> {
         );
     }
 
-    await updateGame(
+    const savedGame = await saveGameToDb(
         env,
         accountId,
         body.game
@@ -98,5 +83,6 @@ export async function saveGame(request: Request, env: Env): Promise<Response> {
 
     return Response.json({
         success: true,
+        game: savedGame,
     });
 }

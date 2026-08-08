@@ -58,23 +58,38 @@ export async function getGame(env: Env, accountId: string): Promise<GameState | 
     ) as GameState;
 }
 
-export async function updateGame(env: Env, accountId: string, game: GameState): Promise<void> {
+export async function saveGame(env: Env, accountId: string, game: GameState): Promise<GameState> {
     const now = new Date().toISOString();
 
-    game.updatedAt = now;
-    game.version++;
+    const savedGame: GameState = {
+        ...game,
+        accountId,
+        updatedAt: now,
+        version: game.version + 1,
+    };
 
-    await env.DB.prepare(
-        `
-        UPDATE games
-        SET 
-            game_state = ?,
-            updated_at = ?
-        WHERE account_id = ?
-        `
-    ).bind(
-        JSON.stringify(game),
-        now,
-        accountId
-    ).run();
+    await env.DB
+        .prepare(
+            `
+            INSERT INTO games (
+                account_id,
+                game_state,
+                updated_at
+            )
+            VALUES (?, ?, ?)
+
+            ON CONFLICT(account_id)
+            DO UPDATE SET
+                game_state = excluded.game_state,
+                updated_at = excluded.updated_at
+            `
+        )
+        .bind(
+            accountId,
+            JSON.stringify(savedGame),
+            now
+        )
+        .run();
+
+    return savedGame;
 }
