@@ -51,7 +51,7 @@ export async function login(request: Request, env: Env): Promise<Response> {
         return Response.json({
             success: true,
             accountId: account.id,
-            game: game || null
+            game: game, 
         });
     } catch (e) {
         console.error("LOGIN ERROR:", e);

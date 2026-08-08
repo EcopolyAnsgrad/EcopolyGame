@@ -12,7 +12,8 @@
 		{
 			"binding": "DB",
 			"database_name": "ecopoly-db",
-			"database_id": "b772fd31-1ccd-4902-b210-cec9a732d3bc"
+			"database_id": "b772fd31-1ccd-4902-b210-cec9a732d3bc",
+			"remote": true
 			}
 	],
 	"observability": {

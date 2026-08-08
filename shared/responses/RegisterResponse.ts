@@ -3,6 +3,4 @@ export interface RegisterResponse {
     message?: string;
 
     accountId?: string;
-
-    game?: unknown;
 }
