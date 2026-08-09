@@ -4,7 +4,7 @@ import everyday from "./islandEveryday.png";
 import jobs from "./islandJobs.png";
 import nature from "./islandNature.png";
 import recycling from "./islandRecycling.png";
-import resources from "./IslandResources.png";
+import resources from "./islandResources.png";
 
 export {
     agriculture,
