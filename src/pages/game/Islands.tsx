@@ -4,6 +4,7 @@ import { ISLANDS_NAVIGATION } from "../../constants/islandNavigator";
 import { useGame } from "../../game/context/GameContext";
 import * as gameApi from "../../game/api/gameApi";
 import { useNavigate } from "react-router-dom";
+import NavigationButton from "../../shared/UI/NavigationButton";
 
 function Islands() {    
     const navigate = useNavigate();
@@ -22,9 +23,16 @@ function Islands() {
 
   return (
     <div className="mainPage">
-      <button onClick={handleLogout}>
-        Log out
-    </button>
+      <div className="island-navigation">
+          <NavigationButton
+              to="/groups"
+              label="back to overview"
+          />
+
+          <button onClick={handleLogout}>
+              Log out
+          </button>
+      </div>
       <div className="image-grid">
         {ISLANDS_NAVIGATION.map((island) => (
           <Link

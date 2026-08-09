@@ -1,5 +1,16 @@
+import NavigationButton from "../shared/UI/NavigationButton";
+
 function About() {
-  return <h1>About</h1>;
+    return (
+        <div>
+            <NavigationButton
+                to="/"
+                label="Back Home"
+            />
+
+            <h1>About</h1>
+        </div>
+    );
 }
 
 export default About;
