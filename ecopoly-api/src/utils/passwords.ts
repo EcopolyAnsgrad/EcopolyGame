@@ -1,6 +1,6 @@
 const encoder = new TextEncoder();
 
-const PBKDF2_ITERATIONS = 210_000;
+const PBKDF2_ITERATIONS = 100_000;
 const HASH_LENGTH = 32;
 
 function bytesToBase64(bytes: Uint8Array): string {

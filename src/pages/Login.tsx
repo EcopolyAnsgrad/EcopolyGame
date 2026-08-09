@@ -82,6 +82,12 @@ async function handleLogin(e: React.FormEvent) {
                         required
                     />
 
+                    {error && (
+                        <p className="login-error">
+                            {error}
+                        </p>
+                    )}
+
                     <button
                         type="submit"
                         className="login-button"

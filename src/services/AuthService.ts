@@ -19,6 +19,6 @@ export async function login(username:string, password:string){
     });
 }
 
-export async function logout (username: string,) {
+export async function logout(): Promise<void> {
     
 }

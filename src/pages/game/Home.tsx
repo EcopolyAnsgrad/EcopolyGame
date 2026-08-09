@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Typography } from "@mui/material";
 import "./Home.css";
 import HomeBlueButton from "../../shared/UI/HomeBlueButton";
 import FooterLogo from "../../shared/UI/FooterLogo";

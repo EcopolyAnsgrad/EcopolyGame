@@ -18,14 +18,12 @@ export async function createSession(env: Env, accountId: string): Promise<string
             )
             VALUES (?, ?, ?, ?)
             `
-        )
-        .bind(
+        ).bind(
             tokenHash,
             accountId,
             createdAt,
             expiresAt
-        )
-        .run();
+        ).run();
 
     return token;
 }
@@ -41,12 +39,22 @@ export async function getAccountIdFromSession(env: Env, token: string): Promise<
                 WHERE token_hash = ?
                   AND expires_at > ?
                 `
-            )
-            .bind(
+            ).bind(
                 tokenHash,
                 new Date().toISOString()
-            )
-            .first<{ account_id: string }>();
+            ).first<{ account_id: string }>();
 
     return result?.account_id ?? null;
+}
+
+export async function deleteSession(env: Env, token: string): Promise<void> {
+    const tokenHash = await hashSessionToken(token);
+
+    await env.DB.prepare(
+            `
+            DELETE FROM sessions
+            WHERE token_hash = ?
+            `
+        ).bind(tokenHash)
+        .run();
 }

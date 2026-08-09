@@ -144,3 +144,20 @@ export async function saveGame(request: GameUpdateRequest): Promise<SaveGameResp
     return data;
 }
 
+export async function logout():Promise<void> {
+    const token = getSessionToken();
+
+    try {
+        if (token) {
+            await fetch(
+                `${API_URL}/api/session`,
+                {
+                    method: "DELETE",
+                    headers: authHeaders(),
+                }
+            );
+        }
+    } finally {
+        clearSessionToken();
+    }
+}

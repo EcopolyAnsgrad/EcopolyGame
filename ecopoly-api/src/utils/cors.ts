@@ -1,6 +1,6 @@
 const ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    // add your GitHub Pages origin later
+    "https://EcopolyAnsgrad.github.io",
 ];
 
 export function getCorsHeaders(request: Request): Record<string, string> {

@@ -3,6 +3,7 @@ import { register } from "./routes/register";
 import { login } from "./routes/login";
 import { loadGame, saveGame } from "./routes/game";
 import { getCorsHeaders } from "./utils/cors";
+import { logout } from "./routes/logout";
 
 export default {
     async fetch(request: Request, env: Env): Promise<Response> {
@@ -24,30 +25,28 @@ export default {
                     request,
                     env
                 );
-        }
-
-        else if (request.method === "POST" && url.pathname === "/api/login") {
+        } else if (request.method === "POST" && url.pathname === "/api/login") {
             response = await login(
                     request,
                     env
                 );
-        }
-
-        else if (request.method === "GET" && url.pathname === "/api/game") {
+        } else if (request.method === "GET" && url.pathname === "/api/game") {
             response = await loadGame(
                     request,
                     env
                 );
-        }
-
-        else if (request.method === "PUT" && url.pathname === "/api/game") {
+        } else if (request.method === "PUT" && url.pathname === "/api/game") {
             response = await saveGame(
                     request,
                     env
                 );
-        }
-
-        else {
+        } else if (request.method === "DELETE" && url.pathname === "/api/session") {
+            response =
+                await logout(
+                    request,
+                    env
+                );
+        } else {
             response = new Response(
                     "Not Found",
                     {

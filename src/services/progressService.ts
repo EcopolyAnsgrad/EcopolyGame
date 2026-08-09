@@ -2,8 +2,14 @@ import type { TaskCompletion } from "../shared/components/ProgressGlass/types.ts
 
 import { loadGame } from "../game/api/gameApi.ts";
 
-export async function getProgressHistory(accountId: string): Promise<TaskCompletion[]> {
-    const game = await loadGame(accountId);
+export async function getProgressHistory(): Promise<TaskCompletion[]> {
+    const response = await loadGame();
+
+    if (!response.game) {
+        return [];
+    }
+
+    const game = response.game;
 
     return Object.values(game.assignments)
         .flat()
@@ -16,7 +22,7 @@ export async function getProgressHistory(accountId: string): Promise<TaskComplet
         )
         .map(a=>{
             const group = game.groups.find(
-                    g=>g.id===a.assignedGroupID
+                    g=>g.id===a.assignedGroupId
                 );
 
             return{

@@ -19,6 +19,18 @@ function Groups() {
     const [lockedGroups, setLockedGroups] = useState<number[]>([]);
     const { history } = useProgressHistory();
     const navigate = useNavigate();
+    const {clearCurrentGame} = useGame();
+
+    async function handleLogout() {
+        await gameApi.logout();
+        clearCurrentGame();
+        navigate(
+            "/",
+            {
+                replace: true,
+            }
+        );
+    }
 
     const { setCurrentGame } = useGame();
 
@@ -103,6 +115,9 @@ function Groups() {
   return (
     <div className="mainPage">
         <h1>Group selection</h1>
+        <button onClick={handleLogout}>
+            Log out
+        </button>
         <button onClick={confirmGroupNames}>
             Play Ecopoly
         </button>
