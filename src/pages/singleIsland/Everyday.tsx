@@ -1,6 +1,7 @@
 import { everyday as islandEveryday } from "../../images/islands";
 import { everydayTasks } from "../../data/everydayTasks";
 import IslandBoard from "../../shared/Quiz/IslandBoard";
+import { useGame } from "../../game/context/GameContext";
 
 export default function Everyday() {
     return (

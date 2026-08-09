@@ -1,5 +1,5 @@
 import type { Env } from "./types/Env";
-import { register } from "./routes/auth";
+import { register } from "./routes/register";
 import { login } from "./routes/login";
 import { loadGame, saveGame } from "./routes/game";
 import { getCorsHeaders } from "./utils/cors";

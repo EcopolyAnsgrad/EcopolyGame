@@ -9,8 +9,9 @@ import { createSession } from "../db/sessions";
 export async function login(request: Request, env: Env): Promise<Response> {
     try {
         const body = await request.json() as LoginRequest;
+        const username = body.username?.trim().toLowerCase();
 
-        if (!body.username || !body.password) {
+        if (!username || !body.password) {
             return Response.json(
                 {
                     success: false,
@@ -20,7 +21,7 @@ export async function login(request: Request, env: Env): Promise<Response> {
             );
         }
 
-        const account = await getAccountByUsername(env, body.username);
+        const account = await getAccountByUsername(env, username);
 
         if (!account) {
             return Response.json(

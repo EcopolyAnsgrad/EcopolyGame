@@ -1,0 +1,42 @@
+import type { ReactNode } from "react";
+import { Navigate } from "react-router-dom";
+import { useGame } from "../context/GameContext";
+import { getSessionToken } from "../api/gameApi";
+
+type GameRouteProps = {
+    children: ReactNode;
+};
+
+function GameRoute({children,}: GameRouteProps) {
+    const {game, gameLoading,} = useGame();
+
+    if (gameLoading) {
+        return (
+            <div>
+                Loading Ecopoly...
+            </div>
+        );
+    }
+
+    if (!getSessionToken()) {
+        return (
+            <Navigate
+                to="/login"
+                replace
+            />
+        );
+    }
+
+    if (!game) {
+        return (
+            <Navigate
+                to="/groups"
+                replace
+            />
+        );
+    }
+
+    return children;
+}
+
+export default GameRoute;

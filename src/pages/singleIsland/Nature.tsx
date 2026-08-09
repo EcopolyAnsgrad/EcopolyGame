@@ -1,6 +1,7 @@
 import { nature as islandNature } from "../../images/islands";
 import { natureTasks } from "../../data/natureTasks";
 import IslandBoard from "../../shared/Quiz/IslandBoard";
+import { useGame } from "../../game/context/GameContext";
 
 export default function Nature() {
     return (

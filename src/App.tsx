@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import * as Pages from './pages'
 import * as islands from './pages/singleIsland'
+import GameRoute from './game/components/GameRoutes'
 
 function App() {
   return (
@@ -13,13 +14,13 @@ function App() {
       <Route path="/authors" element={<Pages.Authors />} />
       <Route path="/french" element={<Pages.French />} />
       <Route path="/groups" element={<Pages.Groups />} />
-      <Route path="/agriculture" element={<islands.Agriculture />} />
-      <Route path="/climate" element={<islands.Climate />} />
-      <Route path="/everyday" element={<islands.Everyday />} />
-      <Route path="/jobs" element={<islands.Jobs />} />
-      <Route path="/nature" element={<islands.Nature />} />
-      <Route path="/recycling" element={<islands.Recycling />} />
-      <Route path="/resources" element={<islands.Resources />} />
+      <Route path="/agriculture" element={<GameRoute><islands.Agriculture /></GameRoute>} />
+      <Route path="/climate" element={<GameRoute><islands.Climate /></GameRoute>} />
+      <Route path="/everyday" element={<GameRoute><islands.Everyday /></GameRoute>} />
+      <Route path="/jobs" element={<GameRoute><islands.Jobs /></GameRoute>} />
+      <Route path="/nature" element={<GameRoute><islands.Nature /></GameRoute>} />
+      <Route path="/recycling" element={<GameRoute><islands.Recycling /></GameRoute>} />
+      <Route path="/resources" element={<GameRoute><islands.Resources /></GameRoute>} />
       <Route path="/login" element={<Pages.Login />} />
       <Route path="register" element={<Pages.Register />} />
     </Routes>

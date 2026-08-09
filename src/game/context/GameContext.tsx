@@ -6,6 +6,7 @@ import * as gameApi from "../api/gameApi";
 
 type GameContextType = {
     game: GameState | null;
+    gameLoading: boolean;
     groups: Group[];
 
     setCurrentGame: (game: GameState) => void;
@@ -34,7 +35,40 @@ const GameContext = createContext<GameContextType | null>(null);
 export function GameProvider({children,}: {children: React.ReactNode;}) {
     const skipNextSave = useRef(false);
     const [game, setGame] = useState<GameState | null>(null);
+    const [gameLoading, setGameLoading] = useState(true);
 
+
+    useEffect(() => {
+        async function restoreGame() {
+
+            const token = gameApi.getSessionToken();
+
+            if (!token) {
+                setGameLoading(false);
+                return;
+            }
+
+            try {
+                const response =await gameApi.loadGame();
+
+                if (response.game) {
+                    skipNextSave.current = true;
+                    setGame(response.game);
+                }
+            } catch (error) {
+                console.error(
+                    "Could not restore game:",
+                    error
+                );
+                gameApi.clearSessionToken();
+                setGame(null);
+            } finally {
+                setGameLoading(false);
+            }
+        }
+        restoreGame();
+    }, []);
+    
     function setCurrentGame(newGame: GameState): void {
         skipNextSave.current = true;
         setGame(newGame);
@@ -62,22 +96,16 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
         });
     }
 
-    function assignTask(
-        islandId: string,
-        taskId: number,
-        groupId: number
-    ) {
+    function assignTask(islandId: string, taskId: number, groupId: number) {
         setGame(current => {
             if (!current) {
                 return current;
             }
 
             const islandAssignments = current.assignments[islandId] ?? [];
-
             const exists = islandAssignments.some(
                     assignment => assignment.taskId === taskId
                 );
-
             const updatedAssignments = exists ? islandAssignments.map(
                     assignment => assignment.taskId === taskId
                             ? {
@@ -108,18 +136,13 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
         });
     }
 
-    function completeTask(
-        islandId: string,
-        taskId: number,
-        completed: boolean
-    ) {
+    function completeTask(islandId: string, taskId: number, completed: boolean) {
         setGame(current => {
             if (!current) {
                 return current;
             }
 
             const islandAssignments = current.assignments[islandId] ?? [];
-
             const updatedAssignments = islandAssignments.map(
                     assignment => assignment.taskId === taskId
                             ? {
@@ -192,6 +215,7 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
         <GameContext.Provider
             value={{
                 game,
+                gameLoading,
                 groups: game?.groups ?? [],
                 setCurrentGame,
                 clearCurrentGame,

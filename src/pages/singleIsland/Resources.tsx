@@ -1,6 +1,7 @@
 import { resources as islandResources } from "../../images/islands";
 import { resourcesTasks } from "../../data/resourcesTasks";
 import IslandBoard from "../../shared/Quiz/IslandBoard";
+import { useGame } from "../../game/context/GameContext";
 
 export default function Resources() {
     return (

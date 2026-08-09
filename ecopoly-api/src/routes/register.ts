@@ -1,13 +1,11 @@
 import type { Env } from "../types/Env";
 import type { RegisterRequest } from "../../../shared/requests/RegisterRequest";
-
 import {usernameExists, createAccount,} from "../db/accounts";
 import {createGame,} from "../db/games";
 
 export async function register(request: Request, env: Env): Promise<Response> {
     try {
         const body = await request.json() as RegisterRequest;
-        
         const username = body.username?.trim().toLowerCase();
         const password = body.password;
         const email = body.email?.trim() || null;
@@ -63,6 +61,19 @@ export async function register(request: Request, env: Env): Promise<Response> {
             );
         }
 
+        if (await usernameExists(env, username)) {
+            return Response.json(
+                {
+                    success: false,
+                    message:
+                        "Username already exists.",
+                },
+                {
+                    status: 409,
+                }
+            );
+        }
+
         const accountId = await createAccount(env, username, email, password,);
 
         return Response.json({
@@ -70,7 +81,7 @@ export async function register(request: Request, env: Env): Promise<Response> {
             accountId,
             });
     } catch (e) {
-        console.error("REGISTER ERROR:", e);
+         console.error("REGISTER ERROR:", e);
 
         return Response.json(
             {

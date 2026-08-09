@@ -1,22 +1,15 @@
 import type { Env } from "../types/Env";
 import type { GameState } from "../../../shared/models/GameState";
 
-export async function createGame(
-    env: Env,
-    accountId: string
-) {
+export async function createGame(env: Env, accountId: string) {
     const now = new Date().toISOString();
-
     const game = {
         ID: crypto.randomUUID(),
         accountId,
-
         createdAt: now,
         updatedAt: now,
-        version: 1,
-
+        version: 0,
         groups: [],
-
         assignments: {},
     };
 
@@ -60,7 +53,6 @@ export async function getGame(env: Env, accountId: string): Promise<GameState | 
 
 export async function saveGame(env: Env, accountId: string, game: GameState): Promise<GameState> {
     const now = new Date().toISOString();
-
     const savedGame: GameState = {
         ...game,
         updatedAt: now,
