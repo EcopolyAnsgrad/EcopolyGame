@@ -28,12 +28,9 @@ async function handleLogin(e: React.FormEvent) {
             setCurrentGame(
                 response.game
             );
-
-            navigate("/islands");
-        } else {
-            /* Account exists but there is no GameState yet. User needs to configure groups.*/
-            navigate("/groups");
         }
+
+        navigate("/groups");
 
     } catch (error) {
         setError(

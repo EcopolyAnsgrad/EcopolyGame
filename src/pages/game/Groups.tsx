@@ -16,10 +16,41 @@ import * as gameApi from "../../game/api/gameApi";
 import { useNavigate } from "react-router-dom";
 
 function Groups() {
-    const [lockedGroups, setLockedGroups] = useState<number[]>([]);
     const { history } = useProgressHistory();
     const navigate = useNavigate();
     const {clearCurrentGame} = useGame();
+    const { game, setCurrentGame,} = useGame();
+
+    const [lockedGroups, setLockedGroups] = useState<number[]>(
+        () =>
+            game
+                ? game.groups
+                    .filter(
+                        group =>
+                            group.name.trim() !== ""
+                    )
+                    .map(
+                        group => group.id
+                    )
+                : []
+    );
+
+    function createDefaultGroups(): Group[] {
+        return COLORS
+            .slice(0, 6)
+            .map((color, index) => ({
+                id: index + 1,
+                name: "",
+                color,
+            }));
+    }
+
+    const [groups, setGroups] = useState<Group[]>(
+            () =>
+                game?.groups.length
+                    ? game.groups
+                    : createDefaultGroups()
+        );
 
     async function handleLogout() {
         await gameApi.logout();
@@ -31,18 +62,6 @@ function Groups() {
             }
         );
     }
-
-    const { setCurrentGame } = useGame();
-
-    const [groups, setGroups] = useState<Group[]>(
-        COLORS.slice(0, 6).map(
-            (color, index) => ({
-                id: index + 1,
-                name: "",
-                color,
-            })
-        )
-    );
 
     function handleNameChange(id: number, name: string) {
         setGroups(current =>
@@ -104,13 +123,59 @@ function Groups() {
         );
     }
 
-    const confirmGroupNames=()=>{
+    async function handlePlay() {
+    if (game) {
+        navigate("/islands");
+        return;
+    }
+
+    const valid = groups.every(
+            group => group.name.trim() !== ""
+        );
+
+    if (!valid) {
+        return;
+    }
+
+    const newGame = createGame(groups);
+
+    try {
+        const response = await gameApi.saveGame({
+                game: newGame,
+            });
+
+        if (!response.game) {
+            throw new Error(
+                "Server did not return saved game."
+            );
+        }
+
+        setCurrentGame(
+            response.game
+        );
+
+        setLockedGroups(
+            groups.map(
+                group => group.id
+            )
+        );
+
+        navigate("/islands");
+    } catch (error) {
+        console.error(
+            "Could not start game:",
+            error
+        );
+    }
+}
+
+    /*const confirmGroupNames=()=>{
         setLockedGroups(
             groups
                 .filter(group => group.name.trim() !== "")
                 .map(group => group.id)
         );
-    };
+    };*/
 
   return (
     <div className="mainPage">
@@ -118,7 +183,7 @@ function Groups() {
         <button onClick={handleLogout}>
             Log out
         </button>
-        <button onClick={confirmGroupNames}>
+        <button onClick={handlePlay}>
             Play Ecopoly
         </button>
         
@@ -128,8 +193,13 @@ function Groups() {
                     key={group.id}
                     group={group}
                     groups={groups}
+                    locked={
+                        lockedGroups.includes(
+                            group.id
+                        )
+                    }
                     onNameChange={handleNameChange}
-                    onColorChange={handleColorChange} 
+                    onColorChange={handleColorChange}
                     />
             ))}
         </div>

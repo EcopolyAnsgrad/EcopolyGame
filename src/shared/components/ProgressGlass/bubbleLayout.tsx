@@ -1,11 +1,8 @@
 import type { BubblePosition } from "./types.tsx";
 
 const ROWS = [5, 5, 5, 5, 5, 5, 5, 5, 2];
-
-const BUBBLE_SIZE = 26;
 const HORIZONTAL_SPACING = 32;
 const VERTICAL_SPACING = 31;
-
 const START_Y = 300;
 
 export const bubbleLayout: BubblePosition[] = [];

@@ -5,7 +5,7 @@ export interface BubblePosition {
 }
 
 export interface BubbleData extends BubblePosition {
-    color: number;
+    color: string;
     visible: boolean;
 }
 

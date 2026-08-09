@@ -1,20 +1,11 @@
 import Bubble from "./Bubble.tsx";
 import GlassOutline from "./Outline.tsx";
 import  { bubbleLayout } from "./bubbleLayout.tsx";
-import type { BubbleColor, BubbleData, TaskCompletion } from "./types.tsx";
+import type { BubbleData, TaskCompletion } from "./types.tsx";
 
 interface Props {
     history: TaskCompletion[];
 }
-
-const colorOrder: BubbleColor[] = [
-    "red",
-    "blue",
-    "green",
-    "yellow",
-    "purple",
-    "cyan",
-];
 
 export default function Glass({history}: Props) {
 
