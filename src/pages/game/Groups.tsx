@@ -16,10 +16,9 @@ import * as gameApi from "../../game/api/gameApi";
 import { useNavigate } from "react-router-dom";
 
 function Groups() {
-    const { history } = useProgressHistory();
     const navigate = useNavigate();
-    const {clearCurrentGame} = useGame();
-    const { game, setCurrentGame,} = useGame();
+    const {clearCurrentGame, game, setCurrentGame,} = useGame();
+    const { history } = useProgressHistory(game);
 
     const [lockedGroups, setLockedGroups] = useState<number[]>(
         () =>
@@ -76,40 +75,6 @@ function Groups() {
         );
     }
 
-    async function handleStartGame() {
-        const valid = groups.every(
-                group => group.name.trim() !== ""
-            );
-
-        if (!valid) {return;}
-
-        const newGame = createGame(groups);
-
-        try {
-            const response = await gameApi.saveGame({
-                    game: newGame,
-                });
-
-            if (!response.game) {
-                throw new Error(
-                    "Server did not return saved game."
-                );
-            }
-
-            setCurrentGame(
-                response.game
-            );
-
-            navigate("/islands");
-
-        } catch (error) {
-            console.error(
-                "Could not start game",
-                error
-            );
-        }
-    }
-    
     function handleColorChange(id: number, color: string) {
         setGroups(current =>
             current.map(group =>
@@ -208,7 +173,7 @@ function Groups() {
                     <a href={rules} target="_blank" rel="noopener noreferrer">
                         <BlueButton title="Rules (for teachers)" className="blue-button" />
                     </a>
-                    <div onClick={handleStartGame}>
+                    <div onClick={handlePlay}>
                         <BlueButton
                             title="Play Ecopoly"
                             className="blue-button"

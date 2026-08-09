@@ -146,8 +146,11 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
             const updatedAssignments = islandAssignments.map(
                     assignment => assignment.taskId === taskId
                             ? {
-                                  ...assignment,
-                                  completed,
+                                ...assignment,
+                                completed,
+                                completedAt: completed
+                                      ? new Date().toISOString()
+                                      : undefined,
                               }
                             : assignment
                 );

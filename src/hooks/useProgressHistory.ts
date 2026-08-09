@@ -1,24 +1,40 @@
-import {useEffect,useState} from "react";
-import type {TaskCompletion} from "../shared/components/ProgressGlass/types";
-import {getProgressHistory} from "../services/progressService";
+import { useMemo } from "react";
 
+import type { GameState } from "../../shared/models/GameState";
+import type { TaskCompletion } from "../shared/components/ProgressGlass/types";
 
-export function useProgressHistory(){
+export function useProgressHistory(game: GameState | null) {
+    const history = useMemo<TaskCompletion[]>(() => {
+            if (!game) {
+                return [];
+            }
 
-    const [history,setHistory] =
-        useState<TaskCompletion[]>([]);
+            return Object.values(game.assignments).flat()
+                .filter(
+                    assignment =>
+                        assignment.completed &&
+                        assignment.completedAt
+                ).map(assignment => {
+                    const group =
+                        game.groups.find(
+                            group =>
+                                group.id ===
+                                assignment.assignedGroupId
+                        );
 
-
-    useEffect(()=>{
-
-        getProgressHistory()
-            .then(setHistory);
-
-    },[]);
-
+                    return {
+                        id: `${assignment.islandId}-${assignment.taskId}`,
+                        color: group?.color ?? "gray",
+                        completedAt: assignment.completedAt!,
+                    };
+                }).sort(
+                    (a, b) => a.completedAt.localeCompare(
+                            b.completedAt
+                        )
+                );
+        }, [game]);
 
     return {
         history,
-        setHistory
     };
 }
