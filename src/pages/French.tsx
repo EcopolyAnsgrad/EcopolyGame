@@ -1,10 +1,10 @@
 
-import CartesEvenements from "../assets/printables/French printable game/FRENCH-NATIONAL_GAME/FRANCE_CARTES_EVENEMENTS.pdf";
-import CartesSpeciales from "../assets/printables/French printable game/FRENCH-NATIONAL_GAME/FRANCE_CARTES_SPECIALES.pdf";
-import JeuNationalCartes from "../assets/printables/French printable game/FRENCH-NATIONAL_GAME/FRANCE_JEU_NATIONAL_CARTES.pdf";
-import JeuNationalIles from "../assets/printables/French printable game/FRENCH-NATIONAL_GAME/FRANCE_JEU_NATIONAL_ILES.pdf";
-import JeuNationalResources from "../assets/printables/French printable game/FRENCH-NATIONAL_GAME/FRANCE_JEU_NATIONAL_RESSOURCES_ENSEIGNANTS.pdf";
-import Regles from "../assets/printables/French printable game/FRENCH-NATIONAL_GAME/FRANCE_REGLES DU JEU.pdf";
+import CartesEvenements from "../assets/printables/French Printable Game/FRENCH-NATIONAL_GAME/FRANCE_CARTES_EVENEMENTS.pdf";
+import CartesSpeciales from "../assets/printables/French Printable Game/FRENCH-NATIONAL_GAME/FRANCE_CARTES_SPECIALES.pdf";
+import JeuNationalCartes from "../assets/printables/French Printable Game/FRENCH-NATIONAL_GAME/FRANCE_JEU_NATIONAL_CARTES.pdf";
+import JeuNationalIles from "../assets/printables/French Printable Game/FRENCH-NATIONAL_GAME/FRANCE_JEU_NATIONAL_ILES.pdf";
+import JeuNationalResources from "../assets/printables/French Printable Game/FRENCH-NATIONAL_GAME/FRANCE_JEU_NATIONAL_RESSOURCES_ENSEIGNANTS.pdf";
+import Regles from "../assets/printables/French Printable Game/FRENCH-NATIONAL_GAME/FRANCE_REGLES DU JEU.pdf";
 import "./French.css";
 import "./game/Home.css";
 import { Link } from "react-router-dom";
