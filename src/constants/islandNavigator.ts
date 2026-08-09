@@ -1,6 +1,6 @@
 import Agriculture from "../images/islands/islandAgriculture.png";
 import Climate from "../images/islands/islandClimate.png";
-import Everyday from "../images/islands/IslandEveryday.png";
+import Everyday from "../images/islands/islandEveryday.png";
 import Jobs from "../images/islands/islandJobs.png";
 import Nature from "../images/islands/islandNature.png";
 import Recycling from "../images/islands/islandRecycling.png";
