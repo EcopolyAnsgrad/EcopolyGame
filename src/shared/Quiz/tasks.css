@@ -30,3 +30,14 @@
     width: min(900px, 90vw);
     margin: 40px auto;
 }
+
+.task-card--highlighted {
+    transform: scale(1.05);
+    box-shadow:
+        0 0 0 5px white,
+        0 0 25px rgba(255,255,255,.9);
+
+    transition:
+        transform 0.08s ease,
+        box-shadow 0.08s ease;
+}

@@ -21,6 +21,14 @@ type GameContextType = {
         groupId: number
     ) => void;
 
+    assignTasks: (
+        islandId: string,
+        assignments: {
+            taskId: number;
+            groupId: number;
+        }[]
+    ) => void;
+
     completeTask: (
         islandId: string,
         taskId: number,
@@ -36,7 +44,6 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
     const skipNextSave = useRef(false);
     const [game, setGame] = useState<GameState | null>(null);
     const [gameLoading, setGameLoading] = useState(true);
-
 
     useEffect(() => {
         async function restoreGame() {
@@ -136,6 +143,30 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
         });
     }
 
+    function assignTasks(islandId: string, newAssignments: {taskId: number; groupId: number;}[]) {
+        setGame(current => {
+            if (!current) {
+                return current;
+            }
+
+            const assignments: TaskAssignment[] = newAssignments.map(item => ({
+                    islandId,
+                    taskId: item.taskId,
+                    assignedGroupId:
+                        item.groupId,
+                    completed: false,
+                }));
+
+            return {
+                ...current,
+                assignments: {
+                    ...current.assignments,
+                    [islandId]: assignments,
+                },
+            };
+        });
+    }
+
     function completeTask(islandId: string, taskId: number, completed: boolean) {
         setGame(current => {
             if (!current) {
@@ -224,6 +255,7 @@ export function GameProvider({children,}: {children: React.ReactNode;}) {
                 clearCurrentGame,
                 updateGroup,
                 assignTask,
+                assignTasks,
                 completeTask,
                 getAssignments,
             }}>

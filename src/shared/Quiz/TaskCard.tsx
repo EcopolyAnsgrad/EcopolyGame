@@ -6,24 +6,25 @@ type TaskCardProps = {
     task: TaskDefinition;
     assignedGroup?: Group;
     completed: boolean;
+    highlighted?: boolean;
 
-    onAssign: () => void;
     onCompletedChange: (completed: boolean) => void;
 };
 
-function TaskCard({task, assignedGroup, completed, onAssign, onCompletedChange,}: TaskCardProps) {
+function TaskCard({task, assignedGroup, completed, highlighted, onCompletedChange,}: TaskCardProps) {
     if (!assignedGroup) {
         return (
-            <button
-                type="button"
-                className="task-card task-card--face-down"
-                onClick={onAssign}
-                aria-label={`Assign task ${task.id}`}
+            <div
+                className={`
+                    task-card
+                    task-card--face-down
+                    ${highlighted ? "task-card--highlighted" : ""}
+                `}
             >
-                <span className="task-card-number">
+                <span>
                     {task.id}
                 </span>
-            </button>
+            </div>
         );
     }
 
