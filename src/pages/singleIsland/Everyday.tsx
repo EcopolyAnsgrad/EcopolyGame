@@ -2,6 +2,7 @@ import { everyday as islandEveryday } from "../../images/islands";
 import { everydayTasks } from "../../data/everydayTasks";
 import IslandBoard from "../../shared/Quiz/IslandBoard";
 import NavigationButton from "../../shared/UI/NavigationButton";
+import IslandImage from "../../shared/Quiz/IslandImage";
 
 export default function Everyday() {
     return (
@@ -11,9 +12,9 @@ export default function Everyday() {
                 label="Back to overview"
             />
                         
-            <img
+            <IslandImage
+                islandId="everyday"
                 src={islandEveryday}
-                className="island-image"
                 alt="Everyday"
             />
 

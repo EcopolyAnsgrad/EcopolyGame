@@ -2,6 +2,7 @@ import { jobs as islandJobs } from "../../images/islands";
 import { jobsTasks } from "../../data/jobsTasks";
 import IslandBoard from "../../shared/Quiz/IslandBoard";
 import NavigationButton from "../../shared/UI/NavigationButton";
+import IslandImage from "../../shared/Quiz/IslandImage";
 
 export default function Jobs() {
     return (
@@ -11,9 +12,9 @@ export default function Jobs() {
                 label="Back to overview"
             />            
             
-            <img
+            <IslandImage
+                islandId="jobs"
                 src={islandJobs}
-                className="island-image"
                 alt="Jobs"
             />
 

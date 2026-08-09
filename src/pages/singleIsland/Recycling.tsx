@@ -2,6 +2,7 @@ import { recycling as islandRecycling } from "../../images/islands";
 import { recyclingTasks } from "../../data/recyclingTasks";
 import IslandBoard from "../../shared/Quiz/IslandBoard";
 import NavigationButton from "../../shared/UI/NavigationButton";
+import IslandImage from "../../shared/Quiz/IslandImage";
 
 export default function Recycling() {
     return (
@@ -11,9 +12,9 @@ export default function Recycling() {
                 label="Back to overview"
             />
 
-            <img
+            <IslandImage
+                islandId="recycling"
                 src={islandRecycling}
-                className="island-image"
                 alt="Recycling"
             />
 

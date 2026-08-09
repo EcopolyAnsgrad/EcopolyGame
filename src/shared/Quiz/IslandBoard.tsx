@@ -2,6 +2,8 @@ import type {TaskDefinition} from "../../../shared/models/TaskDefinition"
 import TaskCard from "./TaskCard";
 import "./tasks.css"
 import { useGame } from "../../game/context/GameContext";
+import confetti from "canvas-confetti";
+import { useEffect, useRef } from "react";
 
 type IslandBoardProps = {
     islandId: string;
@@ -9,6 +11,16 @@ type IslandBoardProps = {
 };
 
 function IslandBoard({islandId, tasks,}: IslandBoardProps) {
+    function celebrateIslandCompletion() {
+        confetti({
+            particleCount: 150,
+            spread: 90,
+            origin: {
+                y: 0.65,
+            },
+        });
+    }
+
     const {
         groups,
         getAssignments,
@@ -17,6 +29,24 @@ function IslandBoard({islandId, tasks,}: IslandBoardProps) {
     } = useGame();
 
     const assignments = getAssignments(islandId);
+
+    const completedCount = assignments.filter(
+        assignment => assignment.completed
+    ).length;
+
+    const previousCompletedCount = useRef(completedCount);
+
+    useEffect(() => {
+        const previous = previousCompletedCount.current;
+
+        if (previous < 6 && completedCount === 6) {
+            celebrateIslandCompletion();
+        }
+
+        previousCompletedCount.current =
+            completedCount;
+
+    }, [completedCount]);
 
     function assignRandomGroup(taskId:number){
         const existing = assignments.find(

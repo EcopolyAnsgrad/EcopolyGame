@@ -2,6 +2,7 @@ import { agriculture as islandAgriculture } from "../../images/islands";
 import { agricultureTasks } from "../../data/agricultureTasks";
 import IslandBoard from "../../shared/Quiz/IslandBoard";
 import NavigationButton from "../../shared/UI/NavigationButton";
+import IslandImage from "../../shared/Quiz/IslandImage";
 
 export default function Agriculture() {
     return (
@@ -11,9 +12,9 @@ export default function Agriculture() {
                 label="Back to overview"
             />
 
-            <img
+            <IslandImage
+                islandId="agriculture"
                 src={islandAgriculture}
-                className="island-image"
                 alt="Agriculture"
             />
 

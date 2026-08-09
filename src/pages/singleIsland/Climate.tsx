@@ -2,6 +2,7 @@ import { climate as islandClimate } from "../../images/islands";
 import { climateTasks } from "../../data/climateTasks";
 import IslandBoard from "../../shared/Quiz/IslandBoard";
 import NavigationButton from "../../shared/UI/NavigationButton";
+import IslandImage from "../../shared/Quiz/IslandImage";
 
 export default function Climate() {
     return (
@@ -11,9 +12,9 @@ export default function Climate() {
                 label="Back to overview"
             />
             
-            <img
+            <IslandImage
+                islandId="climate"
                 src={islandClimate}
-                className="island-image"
                 alt="Climate"
             />
 

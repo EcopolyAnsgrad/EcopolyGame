@@ -7,6 +7,7 @@ import Recycling from "../images/islands/islandRecycling.png";
 import Resources from "../images/islands/islandResources.png";
 
 export interface NavigationCard {
+  islandId: string;
   path: string;
   image: string;
   title: string;
@@ -14,36 +15,43 @@ export interface NavigationCard {
 
 export const ISLANDS_NAVIGATION: NavigationCard[]= [
   {
+    islandId: "agriculture",
     path: "/agriculture",
     image: Agriculture,
     title: "Agriculture",
   },
   {
+    islandId: "climate",
     path: "/climate",
     image: Climate,
     title: "Climate",
   },
   {
+    islandId: "everyday",
     path: "/everyday",
     image: Everyday,
     title: "Everyday",
   },
   {
+    islandId: "jobs",
     path: "/jobs",
     image: Jobs,
     title: "Jobs",
   },
   {
+    islandId: "nature",
     path: "/nature",
     image: Nature,
     title: "Nature",
   },
   {
+    islandId: "recycling",
     path: "/recycling",
     image: Recycling,
     title: "Recycling",
   },
   {
+    islandId: "resources",
     path: "/resources",
     image: Resources,
     title: "Resources",
