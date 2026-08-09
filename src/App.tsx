@@ -4,16 +4,17 @@ import { Routes, Route } from 'react-router-dom'
 import * as Pages from './pages'
 import * as islands from './pages/singleIsland'
 import GameRoute from './game/components/GameRoutes'
+import SessionRoute from './game/components/sessionRoutes'
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Pages.Home />} />
       <Route path="/about" element={<Pages.About />} />
-      <Route path="/islands" element={<Pages.Islands />} />
+      <Route path="/islands" element={<GameRoute><Pages.Islands /></GameRoute>} />
       <Route path="/authors" element={<Pages.Authors />} />
       <Route path="/french" element={<Pages.French />} />
-      <Route path="/groups" element={<Pages.Groups />} />
+      <Route path="/groups" element={<SessionRoute><Pages.Groups /></SessionRoute>} />
       <Route path="/agriculture" element={<GameRoute><islands.Agriculture /></GameRoute>} />
       <Route path="/climate" element={<GameRoute><islands.Climate /></GameRoute>} />
       <Route path="/everyday" element={<GameRoute><islands.Everyday /></GameRoute>} />

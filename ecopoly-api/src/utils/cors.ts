@@ -1,6 +1,6 @@
 const ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://EcopolyAnsgrad.github.io",
+    "https://ecopolyansgrad.github.io",
 ];
 
 export function getCorsHeaders(request: Request): Record<string, string> {
