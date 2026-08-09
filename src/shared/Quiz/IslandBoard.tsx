@@ -18,13 +18,6 @@ function IslandBoard({islandId, tasks,}: IslandBoardProps) {
 
     const assignments = getAssignments(islandId);
 
-console.log("IslandBoard", {
-    islandId,
-    tasks,
-    groups,
-    assignments,
-});
-
     function assignRandomGroup(taskId:number){
         const existing = assignments.find(
                 assignment => assignment.taskId === taskId
@@ -68,7 +61,7 @@ console.log("IslandBoard", {
         {tasks.map(task=>{
             const assignment = assignments.find(
                     a=>a.taskId===task.id
-                )!;
+                );
 
             const assignedGroup =
                 assignment?.assignedGroupId
