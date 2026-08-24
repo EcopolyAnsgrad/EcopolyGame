@@ -148,9 +148,6 @@ function Groups() {
         <button onClick={handleLogout}>
             Log out
         </button>
-        <button onClick={handlePlay}>
-            Play Ecopoly
-        </button>
         
         <div className="groups-Grid">
             {groups.map(group => (
