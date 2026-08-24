@@ -143,11 +143,14 @@ function Groups() {
     };*/
 
   return (
-    <div className="mainPage">
-        <h1>Group selection</h1>
-        <button onClick={handleLogout}>
-            Log out
-        </button>
+    <div className="mainPage groups-page">
+        <div className="groups-header">
+            <h1>Group selection</h1>
+            <button className="logout-button"onClick={handleLogout}>
+                Log out
+            </button>
+        </div>
+
         
         <div className="groups-Grid">
             {groups.map(group => (
@@ -167,10 +170,10 @@ function Groups() {
         </div>
 
         <div className="progress-view">
-                    <a href={rules} target="_blank" rel="noopener noreferrer">
+                    <a href={rules} target="_blank" rel="noopener noreferrer" className="rules-button-wrapper">
                         <BlueButton title="Rules (for teachers)" className="blue-button" />
                     </a>
-                    <div onClick={handlePlay}>
+                    <div className="play-button-wrapper" onClick={handlePlay}>
                         <BlueButton
                             title="Play Ecopoly"
                             className="blue-button"
