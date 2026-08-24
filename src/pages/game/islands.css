@@ -40,17 +40,6 @@
     transform: scale(0.98);
 }
 
-.islands-page {
-    position: relative;
-    min-height: 100vh;
-
-    background-color: #bdd7ee;
-
-    box-sizing: border-box;
-
-    padding: 90px 30px 30px;
-}
-
 .island-navigation {
     width: 100%;
 
@@ -74,13 +63,21 @@
     transform: none;
 }
 
+.island-page {
+    position: relative;
+    min-height: 100vh;
+    background-color: #bdd7ee;
+    box-sizing: border-box;
+}
+
 .island-page-navigation {
     position: absolute;
 
-    top: 20px;
+    top: 30px;
     left: 20px;
 
     display: flex;
+    flex-direction: column;
     gap: 12px;
 
     z-index: 20;
@@ -88,4 +85,14 @@
 
 .island-page-navigation .navigation-button {
     position: static;
+
+    min-width: 170px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    text-align: center;
 }
