@@ -53,7 +53,7 @@ async function handleRegister(e: React.FormEvent) {
                     className="login-image"
                 />
 
-                <h1>Create your class account</h1>
+                <h1 className="form-title">Create your class account</h1>
 
                 <p className="login-subtitle">
                     Join your class adventure in Ecopoly.

@@ -68,3 +68,9 @@
     margin-left: 6px;
     font-weight: bold;
 }
+
+.form-title {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin: 1rem 0;
+}

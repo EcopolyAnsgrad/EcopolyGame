@@ -49,7 +49,7 @@ async function handleLogin(e: React.FormEvent) {
                     alt="Ecopoly"
                     className="login-image"
                 />
-                <h1>Welcome to Ecopoly</h1>
+                <h1 className="form-title">Welcome to Ecopoly</h1>
 
                 <p className="login-subtitle">
                     Log in to continue your class adventure.
