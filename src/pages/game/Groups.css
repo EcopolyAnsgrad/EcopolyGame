@@ -229,3 +229,39 @@
 
     cursor: pointer;
 }
+
+.navigation-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    padding: 10px 22px;
+
+    background-color: #5a97d3;
+    color: white;
+
+    border: 3px solid #214674;
+    border-radius: 14px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    transition:
+        filter 0.15s ease,
+        transform 0.15s ease;
+}
+
+.navigation-button:hover {
+    filter: brightness(1.05);
+}
+
+.navigation-button:active {
+    transform: translateY(2px);
+}

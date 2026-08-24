@@ -146,7 +146,7 @@ function Groups() {
     <div className="mainPage groups-page">
         <div className="groups-header">
             <h1>Group selection</h1>
-            <button className="logout-button"onClick={handleLogout}>
+            <button className="logout-button" onClick={handleLogout}>
                 Log out
             </button>
         </div>

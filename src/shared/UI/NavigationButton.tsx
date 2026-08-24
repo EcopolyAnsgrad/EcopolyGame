@@ -7,13 +7,8 @@ type NavigationButtonProps = {
 
 function NavigationButton({to,label,}: NavigationButtonProps) {
     return (
-        <Link
-            to={to}
-            className="navigation-button"
-        >
-            <button type="button">
-                {label}
-            </button>
+        <Link to={to} className="navigation-button">
+            {label}
         </Link>
     );
 }

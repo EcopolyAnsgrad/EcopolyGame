@@ -5,6 +5,7 @@ import { useGame } from "../../game/context/GameContext";
 import * as gameApi from "../../game/api/gameApi";
 import { useNavigate } from "react-router-dom";
 import NavigationButton from "../../shared/UI/NavigationButton";
+import "./Groups.css";
 
 function Islands() {    
     const navigate = useNavigate();
@@ -26,10 +27,10 @@ function Islands() {
       <div className="island-navigation">
           <NavigationButton
               to="/groups"
-              label="back to overview"
+              label="back to groups"
           />
 
-          <button onClick={handleLogout}>
+          <button className="logout-button" onClick={handleLogout}>
               Log out
           </button>
       </div>

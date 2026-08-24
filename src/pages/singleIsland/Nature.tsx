@@ -9,7 +9,7 @@ export default function Nature() {
         <div className="island-page">
             <NavigationButton
                 to="/groups"
-                label="Back to overview"
+                label="Back to groups"
             />
 
             <IslandImage
