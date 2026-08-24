@@ -8,15 +8,17 @@ import "../game/islands.css";
 export default function Jobs() {
     return (
         <div className="island-page">
-            <NavigationButton
-                to="/groups"
-                label="Back to groups"
-            />      
-                  
-            <NavigationButton
-                to="/islands"
-                label="Back to islands"
-            />
+            <div className="island-page-navigation">            
+                <NavigationButton
+                    to="/groups"
+                    label="Back to groups"
+                />
+
+                <NavigationButton
+                    to="/islands"
+                    label="Back to islands"
+                />
+            </div>
 
             <IslandImage
                 islandId="jobs"

@@ -8,16 +8,19 @@ import "../game/islands.css";
 export default function Resources() {
     return (
         <div className="island-page">
-            <NavigationButton
-                to="/groups"
-                label="Back to groups"
-            />
+            <div className="island-page-navigation">            
+                <NavigationButton
+                    to="/groups"
+                    label="Back to groups"
+                />
 
-            <NavigationButton
-                to="/islands"
-                label="Back to islands"
-            />
-            
+                <NavigationButton
+                    to="/islands"
+                    label="Back to islands"
+                />
+            </div>
+
+
             <IslandImage
                 islandId="resources"
                 src={islandResources}

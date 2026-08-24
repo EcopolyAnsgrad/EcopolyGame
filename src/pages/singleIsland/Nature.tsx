@@ -8,16 +8,18 @@ import "../game/islands.css";
 export default function Nature() {
     return (
         <div className="island-page">
-            <NavigationButton
-                to="/groups"
-                label="Back to groups"
-            />
+            <div className="island-page-navigation">            
+                <NavigationButton
+                    to="/groups"
+                    label="Back to groups"
+                />
 
-            <NavigationButton
-                to="/islands"
-                label="Back to islands"
-            />
-            
+                <NavigationButton
+                    to="/islands"
+                    label="Back to islands"
+                />
+            </div>
+
             <IslandImage
                 islandId="nature"
                 src={islandNature}
