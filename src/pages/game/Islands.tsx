@@ -6,6 +6,7 @@ import * as gameApi from "../../game/api/gameApi";
 import { useNavigate } from "react-router-dom";
 import NavigationButton from "../../shared/UI/NavigationButton";
 import "./Groups.css";
+import "./Home.css";
 
 function Islands() {    
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ function Islands() {
     }
 
   return (
-    <div className="mainPage">
+    <div className="mainPage islands-page">
       <div className="island-navigation">
           <NavigationButton
               to="/groups"

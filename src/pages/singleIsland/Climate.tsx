@@ -3,6 +3,7 @@ import { climateTasks } from "../../data/climateTasks";
 import IslandBoard from "../../shared/Quiz/IslandBoard";
 import NavigationButton from "../../shared/UI/NavigationButton";
 import IslandImage from "../../shared/Quiz/IslandImage";
+import "../game/islands.css";
 
 export default function Climate() {
     return (
