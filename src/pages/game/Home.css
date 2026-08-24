@@ -24,8 +24,6 @@
 
 .leftMenu a {
     display: block;
-    width: 260px;
-    height: 140px;
     text-decoration: none;
 }
 
@@ -203,4 +201,37 @@
     gap: 35px;
 
     margin: 25px auto 0;
+}
+
+.downloadable-button-wrapper {
+    width: 260px;
+    height: 140px;
+
+    display: block;
+
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.downloadable-button-wrapper .blue-button {
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    background-color: #5f9ed6;
+    color: white;
+
+    border: 5px solid #214674;
+    border-radius: 40px;
+
+    cursor: pointer;
+}
+
+.downloadable-button-wrapper .blue-button:hover {
+    filter: brightness(1.05);
+}
+
+.downloadable-button-wrapper .blue-button:active {
+    transform: translateY(2px);
 }

@@ -12,13 +12,13 @@ function Home() {
         <div className="mainPage">
             <div className="topContent">
                 <div className="leftMenu">
-                    <Link to="/french">
-                        <HomeBlueButton title="GAME 2:" language="FRENCH" className="blue-button" />
+                    <Link to="/french" className="downloadable-button-wrapper">
+                        <HomeBlueButton title="GAME 2:" language="FRENCH" className="blue-button"/>
                     </Link>
-                    <a href={germanPDF} target="_blank" rel="noopener noreferrer">
+                    <a href={germanPDF} target="_blank" rel="noopener noreferrer" className="downloadable-button-wrapper">
                         <HomeBlueButton title="GAME 3:" language="GERMAN" className="blue-button" />
                     </a>
-                    <a href={polishPDF} target="_blank" rel="noopener noreferrer">
+                    <a href={polishPDF} target="_blank" rel="noopener noreferrer" className="downloadable-button-wrapper">
                         <HomeBlueButton title="GAME 4:" language="POLISH" className="blue-button" />
                     </a>
                 </div>
