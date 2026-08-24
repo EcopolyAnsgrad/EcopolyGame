@@ -23,19 +23,19 @@ function Home() {
                     </a>
                 </div>
                 
-                <div className="mainContent"> 
+                <div className="main-Content"> 
                     <h1 className="title">Welcome to the ECOPOLY GAMES</h1>
-                    <Link to="/login" className="mainButton">
+                    <Link to="/login" className="main-Button">
                         <div className="mainLink">GAME 1:</div>  
                         <div className="mainLink">ONLINE</div>  
-                        <div className="subtitile">Online Game</div>
+                        <div className="subtitle">Online Game</div>
                     </Link>
 
-                    <div className="bottomButtons">
-                        <Link to="/about" className="yellow-button">
+                    <div className="bottom-Buttons">
+                        <Link to="/about" className="green-button">
                             <button>About the project</button>
                         </Link>
-                        <Link to="/authors" className="yellow-button">
+                        <Link to="/authors" className="green-button">
                             <button>Authors</button>
                         </Link>
                     </div>

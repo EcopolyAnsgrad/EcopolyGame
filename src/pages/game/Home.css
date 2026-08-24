@@ -37,21 +37,94 @@
     align-items: center;
 }
 
+.main-Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .title{
     wrap-text: wrap;
-    background-color: rgb(15, 199, 15);
+    font-size: 3rem;
+    line-height: 1.2;
+    margin: 1rem 0;
 }
 
-.subtitle{}
-
-.small-text{}
-
-.mainLink{}
-
-.mainButton {
+.subtitle{
+    color: white;
+    font-size: 2rem;
+    line-height: 1.25;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 8px;    
 }
 
-.bottomButtons {}
+.small-text{
+    font-size: 1rem;
+    line-height: 1.4;    
+}
+
+.mainLink{
+    color: white;
+    font-size: 2.5rem;
+    line-height: 1.25;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.main-Button {
+    width: min(480px, 85vw);
+    min-height: 320px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    background-color: #213f70;
+    border: 5px solid #5fa7e6;
+    border-radius: 55px;
+
+    text-decoration: none;
+    color: white;
+
+    padding: 35px;
+    margin: 0 auto;
+}
+
+.green-button {
+    display: block;
+    width: min(220px, 40vw);
+
+    text-decoration: none;
+}
+
+.green-button button {
+    width: 100%;
+    min-height: 85px;
+
+    background-color: #00b85a;
+    color: white;
+
+    border: 4px solid #006c3a;
+    border-radius: 16px;
+
+    font: inherit;
+    font-size: 1.25rem;
+
+    cursor: pointer;
+}
+
+.green-button button:hover {
+    filter: brightness(1.05);
+}
+
+.green-button button:active {
+    transform: translateY(2px);
+}
 
 .blue-button {
     width: 100%;
@@ -125,4 +198,14 @@
     position: relative;
     top: 10px;
     left: 10px;
+}
+
+.bottom-Buttons {
+    width: min(480px, 85vw);
+
+    display: flex;
+    justify-content: space-between;
+    gap: 35px;
+
+    margin: 25px auto 0;
 }
