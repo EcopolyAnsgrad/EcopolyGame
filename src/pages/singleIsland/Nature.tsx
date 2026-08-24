@@ -13,6 +13,11 @@ export default function Nature() {
                 label="Back to groups"
             />
 
+            <NavigationButton
+                to="/islands"
+                label="Back to islands"
+            />
+            
             <IslandImage
                 islandId="nature"
                 src={islandNature}

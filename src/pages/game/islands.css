@@ -1,10 +1,20 @@
 .image-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 0 20px;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+
+    gap: 32px;
+
+    width: min(1100px, 90vw);
+
+    margin: 30px auto 0;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+}
+
+.image-grid .image-button:nth-child(7) {
+    grid-column: 2;
 }
 
 .image-button {
@@ -30,6 +40,43 @@
     transform: scale(0.98);
 }
 
-.island-page {
+.islands-page {
     position: relative;
+    min-height: 100vh;
+
+    background-color: #bdd7ee;
+
+    box-sizing: border-box;
+
+    padding: 90px 30px 30px;
+}
+
+.island-navigation {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    padding: 20px;
+}
+
+.island-navigation .navigation-button,
+.island-navigation .logout-button {
+    position: static;
+
+    top: auto;
+    right: auto;
+    left: auto;
+
+    transform: none;
+}
+
+.island-page .navigation-button {
+    position: absolute;
+
+    top: 20px;
+    left: 20px;
 }

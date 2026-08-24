@@ -11,8 +11,13 @@ export default function Jobs() {
             <NavigationButton
                 to="/groups"
                 label="Back to groups"
-            />            
-            
+            />      
+                  
+            <NavigationButton
+                to="/islands"
+                label="Back to islands"
+            />
+
             <IslandImage
                 islandId="jobs"
                 src={islandJobs}

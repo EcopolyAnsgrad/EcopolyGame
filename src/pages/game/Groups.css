@@ -25,23 +25,6 @@
     font-weight: normal;
 }
 
-.logout-button {
-    position: absolute;
-    right: 0;
-
-    padding: 10px 22px;
-
-    background-color: #5a97d3;
-    color: white;
-
-    border: 3px solid #214674;
-    border-radius: 14px;
-
-    font-size: 1rem;
-
-    cursor: pointer;
-}
-
 .groups-Grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -264,4 +247,13 @@
 
 .navigation-button:active {
     transform: translateY(2px);
+}
+
+.groups-header .logout-button {
+    position: absolute;
+
+    right: 20px;
+    top: 50%;
+
+    transform: translateY(-50%);
 }

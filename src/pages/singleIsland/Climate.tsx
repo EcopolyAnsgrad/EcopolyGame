@@ -13,6 +13,11 @@ export default function Climate() {
                 label="Back to groups"
             />
             
+            <NavigationButton
+                to="/islands"
+                label="Back to islands"
+            />
+
             <IslandImage
                 islandId="climate"
                 src={islandClimate}

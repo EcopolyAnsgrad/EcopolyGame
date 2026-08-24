@@ -12,7 +12,12 @@ export default function Everyday() {
                 to="/groups"
                 label="Back to groups"
             />
-                        
+            
+            <NavigationButton
+                to="/islands"
+                label="Back to islands"
+            />
+
             <IslandImage
                 islandId="everyday"
                 src={islandEveryday}

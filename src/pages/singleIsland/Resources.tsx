@@ -13,6 +13,11 @@ export default function Resources() {
                 label="Back to groups"
             />
 
+            <NavigationButton
+                to="/islands"
+                label="Back to islands"
+            />
+            
             <IslandImage
                 islandId="resources"
                 src={islandResources}

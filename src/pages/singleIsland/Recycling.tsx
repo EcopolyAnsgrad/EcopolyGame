@@ -13,6 +13,11 @@ export default function Recycling() {
                 label="Back to groups"
             />
 
+            <NavigationButton
+                to="/islands"
+                label="Back to islands"
+            />
+            
             <IslandImage
                 islandId="recycling"
                 src={islandRecycling}
