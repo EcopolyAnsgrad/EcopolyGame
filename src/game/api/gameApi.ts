@@ -7,8 +7,8 @@ import type { RegisterResponse } from "../../../shared/responses/RegisterRespons
 import type { LoadGameResponse } from "../../../shared/responses/LoadGameResponse";
 import type { SaveGameResponse } from "../../../shared/responses/SaveGameResponse";
 
-const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8787";
-//const API_URL = "http://localhost:8787";
+//const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8787";
+const API_URL = "http://localhost:8787";
 const TOKEN_KEY = "ecopoly-session-token";
 
 export function getSessionToken(): string | null {

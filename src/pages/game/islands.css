@@ -1,3 +1,8 @@
+.islands-page {
+    position: relative;
+    min-height: 100vh;
+}
+
 .image-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(220px, 1fr));
@@ -73,25 +78,45 @@
 
 .island-navigation {
     width: 100%;
+}
+.island-navigation .island-page-navigation {
+    position: absolute;
+
+    top: 30px;
+    left: 20px;
 
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 12px;
+
+    z-index: 20;
+}
+
+/* Keep navigation buttons consistent */
+.island-page-navigation .navigation-button {
+    position: static;
+
+    min-width: 170px;
+
+    display: flex;
+    justify-content: center;
     align-items: center;
 
     box-sizing: border-box;
 
-    padding: 20px;
+    text-align: center;
 }
 
-.island-navigation .navigation-button,
+/* Logout on top-right */
 .island-navigation .logout-button {
-    position: static;
+    position: absolute;
 
-    top: auto;
-    right: auto;
+    top: 30px;
+    right: 20px;
+
     left: auto;
 
-    transform: none;
+    z-index: 20;
 }
 
 .island-page {

@@ -241,6 +241,41 @@
         transform 0.15s ease;
 }
 
+.groups-page {
+    position: relative;
+
+    min-height: 100vh;
+    height: auto;
+
+    background-color: #bdd7ee;
+    box-sizing: border-box;
+
+    padding: 20px 0 0;
+}
+
+.groups-page-navigation {
+    position: absolute;
+
+    top: 10px;
+    left: 20px;
+
+    z-index: 20;
+}
+
+.groups-page-navigation .navigation-button {
+    position: static;
+
+    min-width: 170px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
 .navigation-button:hover {
     filter: brightness(1.05);
 }

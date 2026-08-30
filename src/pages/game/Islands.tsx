@@ -56,18 +56,18 @@ function Islands() {
 
   return (
     <div className="mainPage islands-page">
-      <div className="groups-page-navigation">
-          <NavigationButton
-              to="/"
-              label="Back to home"
-          />
-      </div>
-
       <div className="island-navigation">
+        <div className="island-page-navigation">
           <NavigationButton
               to="/groups"
               label="back to groups"
           />
+
+          <NavigationButton
+              to="/"
+              label="Back to home"
+          />
+        </div>
 
           <button className="logout-button" onClick={handleLogout}>
               Log out
@@ -81,7 +81,7 @@ function Islands() {
             <strong>You are now Ecopoly Super Eco-Heroes!</strong>
           </section>
         )}
-        
+
         <div className="image-grid">
         {ISLANDS_NAVIGATION.map(island => {
           const completed = isIslandComplete(game, island.islandId);
