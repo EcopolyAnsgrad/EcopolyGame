@@ -8,13 +8,13 @@ import Regles from "../assets/printables/French Printable Game/FRENCH-NATIONAL_G
 import NavigationButton from "../shared/UI/NavigationButton";
 import "./French.css";
 import "./game/Home.css";
-import { Link } from "react-router-dom";
+
 
 export default function French() {
     return (
         <>
             <h1>French printable games</h1>
-            <NavigationButton
+        <NavigationButton
                 to="/"
                 label="Back to home"
             />
