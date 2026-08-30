@@ -15,6 +15,12 @@ export default function Jobs() {
                 />
 
                 <NavigationButton
+                to="/"
+                label="Back to home"
+                />
+
+
+                <NavigationButton
                     to="/islands"
                     label="Back to islands"
                 />

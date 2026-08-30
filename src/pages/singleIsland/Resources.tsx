@@ -13,6 +13,11 @@ export default function Resources() {
                     to="/groups"
                     label="Back to groups"
                 />
+                
+                <NavigationButton
+                    to="/"
+                    label="Back to home"
+                />
 
                 <NavigationButton
                     to="/islands"

@@ -5,6 +5,7 @@ import JeuNationalCartes from "../assets/printables/French Printable Game/FRENCH
 import JeuNationalIles from "../assets/printables/French Printable Game/FRENCH-NATIONAL_GAME/FRANCE_JEU_NATIONAL_ILES.pdf";
 import JeuNationalResources from "../assets/printables/French Printable Game/FRENCH-NATIONAL_GAME/FRANCE_JEU_NATIONAL_RESSOURCES_ENSEIGNANTS.pdf";
 import Regles from "../assets/printables/French Printable Game/FRENCH-NATIONAL_GAME/FRANCE_REGLES DU JEU.pdf";
+import NavigationButton from "../shared/UI/NavigationButton";
 import "./French.css";
 import "./game/Home.css";
 import { Link } from "react-router-dom";
@@ -13,7 +14,11 @@ export default function French() {
     return (
         <>
             <h1>French printable games</h1>
-            <Link to="/" className="back-button"> BACK</Link>
+            <NavigationButton
+                to="/"
+                label="Back to home"
+            />
+
 
             <div className="links">
                 <ul>

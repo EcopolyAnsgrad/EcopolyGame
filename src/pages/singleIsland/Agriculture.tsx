@@ -15,6 +15,11 @@ export default function Agriculture() {
                 />
 
                 <NavigationButton
+                    to="/"
+                    label="Back to home"
+                />
+
+                <NavigationButton
                     to="/islands"
                     label="Back to islands"
                 />

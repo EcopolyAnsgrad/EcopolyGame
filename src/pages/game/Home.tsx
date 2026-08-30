@@ -5,9 +5,13 @@ import FooterLogo from "../../shared/UI/FooterLogo";
 import polishPDF from "../../assets/printables/Polish printable game.pdf";
 import germanPDF from "../../assets/printables/German printable game.pdf";
 import * as logos from "../../images/logos";
-
+import { useGame } from "../../game/context/GameContext";
+import { getSessionToken } from "../../game/api/gameApi";
 
 function Home() {
+    const { gameLoading } = useGame();
+    const loggedIn = !gameLoading && getSessionToken() !== null;
+
     return (
         <div className="mainPage">
             <div className="topContent">
@@ -25,11 +29,19 @@ function Home() {
                 
                 <div className="main-Content"> 
                     <h1 className="title">Welcome to the ECOPOLY GAMES</h1>
-                    <Link to="/login" className="main-Button">
-                        <div className="mainLink">GAME 1:</div>  
-                        <div className="mainLink">ONLINE</div>  
-                        <div className="subtitle">Online Game</div>
-                    </Link>
+                        <Link to={loggedIn ? "/groups" : "/login"} className="main-Button">
+                            <div className="mainLink">
+                                GAME 1:
+                            </div>
+
+                            <div className="mainLink">
+                                {loggedIn ? "CONTINUE GAME" : "ONLINE"}
+                            </div>
+
+                            <div className="subtitle"> 
+                                {loggedIn ? "Return to your class" : "Online Game"}
+                            </div>
+                        </Link>
 
                     <div className="bottom-Buttons">
                         <Link to="/about" className="green-button">

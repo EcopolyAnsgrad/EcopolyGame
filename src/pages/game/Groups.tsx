@@ -14,6 +14,7 @@ import type { Group } from '../../../shared/models/Group.ts';
 import { createGame } from '../../game/CreateGame.ts';
 import * as gameApi from "../../game/api/gameApi";
 import { useNavigate } from "react-router-dom";
+import NavigationButton from "../../shared/UI/NavigationButton.tsx";
 
 function Groups() {
     const navigate = useNavigate();
@@ -144,6 +145,13 @@ function Groups() {
 
   return (
     <div className="mainPage groups-page">
+        <div className="groups-page-navigation">
+            <NavigationButton
+                to="/"
+                label="Back to home"
+            />
+        </div>
+        
         <div className="groups-header">
             <h1>Group selection</h1>
             <button className="logout-button" onClick={handleLogout}>

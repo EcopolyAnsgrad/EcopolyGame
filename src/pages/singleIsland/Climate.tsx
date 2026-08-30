@@ -15,8 +15,13 @@ export default function Climate() {
                 />
 
                 <NavigationButton
-                    to="/islands"
-                    label="Back to islands"
+                    to="/"
+                    label="Back to home"
+                />
+
+                <NavigationButton
+                        to="/islands"
+                        label="Back to islands"
                 />
             </div>
 

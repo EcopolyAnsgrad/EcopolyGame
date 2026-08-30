@@ -11,7 +11,7 @@
 }
 
 .authors-content {
-    width: min(1200px, 94vw);
+    width: min(1000px, 94vw);
 
     margin: 0 auto;
 }
@@ -52,7 +52,7 @@
 
 .author-photo {
     width: 150px;
-    height: 150px;
+    height: 180px;
 
     display: flex;
     align-items: center;
