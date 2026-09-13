@@ -119,7 +119,7 @@
     text-align: center;
 }
 
-/*.island-navigation .logout-button {
+.island-navigation .logout-button {
     position: absolute;
 
     top: 30px;
@@ -128,11 +128,6 @@
     left: auto;
 
     z-index: 20;
-}*/
-
-.island-navigation .logout-button {
-    position: static;
-    transform: none;
 }
 
 .island-page {
