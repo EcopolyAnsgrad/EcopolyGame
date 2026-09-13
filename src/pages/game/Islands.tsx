@@ -69,7 +69,7 @@ function Islands() {
           />
         </div>
 
-          <button className="island-navigation .logout-button" onClick={handleLogout}>
+          <button className="logout-button" onClick={handleLogout}>
               Log out
           </button>
       </div>
