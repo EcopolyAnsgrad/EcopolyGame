@@ -19,7 +19,6 @@ export default function French() {
                 label="Back to home"
             />
 
-
             <div className="links">
                 <ul>
                     <li className="link"><a href={CartesEvenements} target="_blank" >FRENCH-NATIONAL_GAME/FRANCE_CARTES_EVENEMENTS.pdf</a></li>
