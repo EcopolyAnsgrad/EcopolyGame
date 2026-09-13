@@ -108,9 +108,12 @@
 }
 
 .island-page-navigation .navigation-button {
-    position: static;
+    /*position: static;*/
+    position: absolute;
     min-width: 170px;
+    top: 50%;
 
+    transform: translateY(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
