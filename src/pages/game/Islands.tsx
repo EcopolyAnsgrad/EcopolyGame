@@ -60,7 +60,7 @@ function Islands() {
         <div className="island-page-navigation">
           <NavigationButton
               to="/groups"
-              label="back to groups"
+              label="Back to groups"
           />
 
           <NavigationButton
