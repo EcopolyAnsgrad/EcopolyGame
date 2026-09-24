@@ -29,8 +29,16 @@ function Authors() {
 
             <main className="authors-content">
                 <h1>Authors</h1>
+                    <p>
+                        Project was created individually by students of schools in Krotoszyn and Tiraqueau, with the support of their teachers in the form of board games.
+                        Each school made their own version of the game which can be found as downloadable assets on the home page in their native languages.
 
-                <div className="authors-grid">
+                        Schools cooperation allowed to create a fourth, playable online game that you can experience on this website.
+                        The project was co-funded by the European Union through the Erasmus+ program, which provided financial support for the development and implementation of the project.
+                    </p>
+
+
+                {/* <div className="authors-grid">
                     {AUTHORS.map(author => (
                         <article
                             key={author.id}
@@ -60,7 +68,7 @@ function Authors() {
                             </div>
                         </article>
                     ))}
-                </div>
+                </div>*/}
             </main>
         </div>
     );

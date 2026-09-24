@@ -26,15 +26,9 @@ function About() {
                     </p>
 
                     <p>
-                        This section can contain the final project description,
-                        its goals, participating organisations, target groups
-                        and information about how the Ecopoly games are used
-                        in schools and youth activities.
-                    </p>
-
-                    <p>
-                        Replace this placeholder text with the official project
-                        description when the final copy is available.
+                        The project seems simple at glance and there lies its beauty. 
+                        It is a challenge and task game that can be played by students of all ages, and it is designed to teach them about the importance of protecting the environment and making sustainable choices. 
+                        Guided by responsible adults children will be divide into 6 groups, each group will bve assigned task from each category and confirmed individualy.
                     </p>
                 </section>
             </main>
