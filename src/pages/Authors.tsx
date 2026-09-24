@@ -1,23 +1,23 @@
 import NavigationButton from "../shared/UI/NavigationButton";
-import Michal from "../images/photos/Michal_Bala.jpg";
+//import Michal from "../images/photos/Michal_Bala.jpg";
 
 import "./Authors.css";
 
-type Author = {
+/*type Author = {
     id: number;
     name: string;
     description: string;
     photo?: string;
-};
+};*/
 
-const AUTHORS: Author[] = [
+/*const AUTHORS: Author[] = [
     {
         id: 1,
         name: "Michał Bała",
         description: "Developer and designer of the ECOPOLY project, responsible for implementing the game mechanics and user interface.",
         photo: Michal,
     },
-];
+];*/
 
 function Authors() {
     return (
